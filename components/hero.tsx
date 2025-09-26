@@ -54,67 +54,14 @@ export default function Hero() {
   }, [mounted, displayText, currentIndex, isDeleting])
 
   const handleDownloadResume = () => {
-    const resumeContent = `Isaiah Wright
-Full Stack Developer | Aspiring Voice Actor | Content Creator
-Philadelphia, PA
-(215) 251-7167
-iwright4706@gmail.com
-LinkedIn: Isaiah Wright
-Github: Zay2006
-
-Professional Experience
-
-Launchpad Philly, Philadelphia, PA — Associate
-September 2024 - June 2025
-Advancing through a workforce development program while building full-stack applications with React.js, Next.js, and Python. Creating real-world projects like YouTube Viewer and Social Dashboard, while strengthening communication and strategic thinking for the tech industry.
-
-Apple Inc., Willow Grove, PA — Sales Associate
-October 2024 - January 2025
-Provided excellent customer service and met sales goals in a fast-paced retail setting. Used technical knowledge of Apple products to deliver personalized solutions and build lasting customer relationships.
-
-Office of Reentry Partnerships, Philadelphia, PA — Program Assistant
-July 2024 - August 2024
-Supported a juvenile reentry program through grant research, resource guide creation, and community engagement. Tracked funding opportunities and aided workforce development efforts that improved outcomes for at-risk youth.
-
-Launchpad Philly, Philadelphia, PA — Instructional Intern
-January 2024 - May 2024
-Mentored 75+ high school students in IT fundamentals, showcasing strong communication and leadership. Led professional development workshops, supported ASU coursework, and collaborated with staff to boost curriculum impact and student success.
-
-Education
-
-Launchpad Philly Workforce Development, Philadelphia
-January 2023 - June 2025
-Comprehensive 2.5 year program, including technical skills, training, industry, certifications, and college coursework preparing for high-paying tech careers
-
-Imhotep Institute Charter High School, Philadelphia — High School Diploma
-August 2022 - June 2024
-
-Projects
-
-YouTube Viewer — First ever Project, video streaming application
-Social Dashboard — Analytics and social media management tool
-Timed Timer — Productivity timer application
-
-Technical Skills and Core Competencies
-
-Front End Development: React.js, Next.js, Tailwind CSS
-Backend and Database: Python, MySQL, Full-Stack Development
-Business and Marketing: SEO, Social Media, Advertising, New Business Development
-Professional Skills: Strategic Thinking, Communication, Customer Service, Networking, Sales
-
-Certifications
-
-Learn React Course Certification: CodeAcademy: March 2025`
-
-    const blob = new Blob([resumeContent], { type: "text/plain" })
-    const url = URL.createObjectURL(blob)
+    // Create a link to download the PDF file
     const link = document.createElement("a")
-    link.href = url
-    link.download = "Isaiah_Wright_Resume.txt"
+    link.href = "/Isaiah_Wright_Resume.pdf"
+    link.download = "Isaiah_Wright_Resume.pdf"
+    link.target = "_blank"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
-    URL.revokeObjectURL(url)
   }
 
   if (!mounted) return null
