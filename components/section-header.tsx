@@ -11,10 +11,8 @@ interface SectionHeaderProps {
 export default function SectionHeader({ label, title, description }: SectionHeaderProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       className="text-center mb-12 md:mb-16"
     >
       <span className="text-xs sm:text-sm font-mono text-purple-500 dark:text-purple-400 tracking-[0.2em] uppercase">

@@ -17,9 +17,9 @@ const navItems = [
 ]
 
 export default function Navbar() {
-  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -37,8 +37,6 @@ export default function Navbar() {
     if (href === "/") return pathname === "/"
     return pathname.startsWith(href)
   }
-
-  if (!mounted) return null
 
   return (
     <>
@@ -79,8 +77,9 @@ export default function Navbar() {
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle theme"
                 className="ml-2 rounded-full"
+                suppressHydrationWarning
               >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
             </nav>
 
@@ -91,8 +90,9 @@ export default function Navbar() {
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle theme"
                 className="rounded-full"
+                suppressHydrationWarning
               >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
               <Button
                 variant="ghost"

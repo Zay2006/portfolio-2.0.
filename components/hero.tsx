@@ -10,19 +10,14 @@ import { useReducedMotion } from "@/lib/use-reduced-motion"
 const ROLES = ["Outreach Coordinator", "Voice Actor", "Content Creator", "Full-Stack Developer"]
 
 export default function Hero() {
-  const [mounted, setMounted] = useState(false)
-  const [displayText, setDisplayText] = useState("")
+  const [displayText, setDisplayText] = useState(ROLES[0])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
   const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted || prefersReducedMotion) {
-      setDisplayText(ROLES[0])
+    if (prefersReducedMotion) {
+      setDisplayText(ROLES[currentIndex])
       return
     }
 
@@ -51,7 +46,7 @@ export default function Hero() {
     )
 
     return () => clearTimeout(timeout)
-  }, [mounted, displayText, currentIndex, isDeleting, prefersReducedMotion])
+  }, [displayText, currentIndex, isDeleting, prefersReducedMotion])
 
   const handleDownloadResume = () => {
     const link = document.createElement("a")
@@ -62,8 +57,6 @@ export default function Hero() {
     link.click()
     document.body.removeChild(link)
   }
-
-  if (!mounted) return null
 
   const stats = [
     { number: "75+", label: "Students Mentored" },
