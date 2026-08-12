@@ -9,10 +9,42 @@ import SectionHeader from "@/components/section-header"
 export default function Experience() {
   const experiences = [
     {
+      title: "Voice Actor",
+      company: "Independent Contractor",
+      location: "Philadelphia, PA",
+      period: "2020 - Present",
+      type: "Creative",
+      description:
+        "Providing professional voice-over services for various projects including character voices, narration, and commercial work. Specialized in bringing characters and stories to life through engaging performances.",
+      achievements: [
+        "Completed 20+ voice acting projects",
+        "Developed unique character voices for animated content",
+        "Open for bookings — character work, narration, and esports announcing",
+        "Built a professional home studio setup",
+      ],
+      technologies: ["Audio Editing", "Character Development", "Script Analysis", "Studio Recording"],
+    },
+    {
+      title: "Tech Support Specialist",
+      company: "Family & Community",
+      location: "Philadelphia, PA",
+      period: "2023 - 2025",
+      type: "Technical",
+      description:
+        "Served as the go-to person for tech issues across family and community, developing deep expertise in troubleshooting, system optimization, and user support across various devices and platforms.",
+      achievements: [
+        "Resolved 100+ technical issues across different platforms",
+        "Developed systematic troubleshooting methodologies",
+        "Gained expertise in Windows, macOS, and mobile platforms",
+        "Built reputation as a reliable tech problem solver",
+      ],
+      technologies: ["Windows", "macOS", "iOS", "Android", "Hardware Troubleshooting", "Network Setup"],
+    },
+    {
       title: "Full-Stack Developer",
       company: "Freelance Projects",
       location: "Remote",
-      period: "2022 - Present",
+      period: "2024 - Present",
       type: "Freelance",
       description:
         "Developed multiple web applications using modern technologies including React, Next.js, and MySQL. Created user-friendly interfaces and robust backend systems for various clients.",
@@ -23,38 +55,6 @@ export default function Experience() {
         "Achieved 98% client satisfaction rate",
       ],
       technologies: ["React", "Next.js", "TypeScript", "MySQL", "Node.js", "Tailwind CSS"],
-    },
-    {
-      title: "Voice Actor",
-      company: "Independent Contractor",
-      location: "Philadelphia, PA",
-      period: "2021 - Present",
-      type: "Creative",
-      description:
-        "Providing professional voice-over services for various projects including character voices, narration, and commercial work. Specialized in bringing characters to life with engaging performances.",
-      achievements: [
-        "Completed 20+ voice acting projects",
-        "Developed unique character voices for animated content",
-        "Mastered audio editing and post-production techniques",
-        "Built a professional home studio setup",
-      ],
-      technologies: ["Audio Editing", "Character Development", "Script Analysis", "Studio Recording"],
-    },
-    {
-      title: "Tech Support Specialist",
-      company: "Family & Community",
-      location: "Philadelphia, PA",
-      period: "2019 - 2022",
-      type: "Technical",
-      description:
-        "Started as the go-to person for family tech issues, which evolved into a deep understanding of troubleshooting, system optimization, and user support across various devices and platforms.",
-      achievements: [
-        "Resolved 100+ technical issues across different platforms",
-        "Developed systematic troubleshooting methodologies",
-        "Gained expertise in Windows, macOS, and mobile platforms",
-        "Built reputation as reliable tech problem solver",
-      ],
-      technologies: ["Windows", "macOS", "iOS", "Android", "Hardware Troubleshooting", "Network Setup"],
     },
   ]
 
@@ -72,18 +72,18 @@ export default function Experience() {
     {
       icon: Calendar,
       title: "Continuous Growth",
-      description: "3+ years of consistent skill development and professional growth across multiple disciplines",
+      description: "5+ years of consistent skill development and professional growth across multiple disciplines",
     },
   ]
 
   return (
-    <section id="experience" className="py-16 sm:py-20 px-4 relative">
+    <section className="py-16 sm:py-20 px-4 relative">
       <div className="absolute inset-0 bg-gray-50/80 dark:bg-gray-800/30 -z-10" />
       <div className="container mx-auto">
         <SectionHeader
-          label="03 — Experience"
+          label="Experience"
           title="Experience & Journey"
-          description="My professional journey across technology, creative arts, and voice acting, showcasing growth and versatility."
+          description="My professional journey across voice acting, technology, and development — showcasing growth, versatility, and a passion for storytelling and innovation."
         />
 
         <div className="relative max-w-4xl mx-auto">

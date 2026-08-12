@@ -85,7 +85,7 @@ export default function Projects() {
       <div className="absolute inset-0 bg-gray-50/80 dark:bg-gray-800/30 -z-10" />
       <div className="container mx-auto">
         <SectionHeader
-          label="04 — Projects"
+          label="Featured Work"
           title="Featured Projects"
           description="A showcase of my recent work demonstrating skills in web development, database management, UI/UX design, and full-stack application development."
         />

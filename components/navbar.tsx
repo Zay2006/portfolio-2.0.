@@ -1,27 +1,26 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
-import { useActiveSection } from "@/lib/use-active-section"
 
 const navItems = [
-  { name: "About", href: "#about", id: "about" },
-  { name: "Skills", href: "#skills", id: "skills" },
-  { name: "Experience", href: "#experience", id: "experience" },
-  { name: "Projects", href: "#projects", id: "projects" },
-  { name: "Contact", href: "#contact", id: "contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Skills", href: "/skills" },
+  { name: "Experience", href: "/experience" },
+  { name: "Contact", href: "/contact" },
 ]
-
-const sectionIds = navItems.map((item) => item.id)
 
 export default function Navbar() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const activeSection = useActiveSection(sectionIds)
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
@@ -34,6 +33,11 @@ export default function Navbar() {
     }
   }, [isMenuOpen])
 
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/"
+    return pathname.startsWith(href)
+  }
+
   if (!mounted) return null
 
   return (
@@ -41,33 +45,33 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border-b border-white/20 dark:border-gray-800/50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="text-lg sm:text-xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600"
             >
               Isaiah Wright
-            </a>
+            </Link>
 
             <nav className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                    activeSection === item.id
+                    isActive(item.href)
                       ? "text-purple-600 dark:text-purple-400"
                       : "text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
                   }`}
                 >
                   {item.name}
-                  {activeSection === item.id && (
+                  {isActive(item.href) && (
                     <motion.span
                       layoutId="activeNav"
                       className="absolute inset-0 bg-purple-100/80 dark:bg-purple-900/30 rounded-full -z-10"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
-                </a>
+                </Link>
               ))}
               <Button
                 variant="ghost"
@@ -131,49 +135,30 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col space-y-2">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.div
                     key={item.name}
-                    href={item.href}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`px-4 py-3 rounded-xl font-medium transition-colors ${
-                      activeSection === item.id
-                        ? "bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                    }`}
                   >
-                    {item.name}
-                  </motion.a>
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
+                        isActive(item.href)
+                          ? "bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
             </motion.nav>
           </>
         )}
       </AnimatePresence>
-
-      <nav className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3">
-        {navItems.map((item) => (
-          <a
-            key={item.id}
-            href={item.href}
-            aria-label={item.name}
-            className="group flex items-center justify-end gap-2"
-          >
-            <span className="opacity-0 group-hover:opacity-100 text-xs font-medium text-gray-500 dark:text-gray-400 transition-opacity">
-              {item.name}
-            </span>
-            <span
-              className={`block w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                activeSection === item.id
-                  ? "bg-purple-600 scale-125"
-                  : "bg-gray-300 dark:bg-gray-600 group-hover:bg-purple-400"
-              }`}
-            />
-          </a>
-        ))}
-      </nav>
     </>
   )
 }

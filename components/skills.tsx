@@ -86,7 +86,7 @@ export default function Skills() {
     <section id="skills" className="py-16 sm:py-20 px-4">
       <div className="container mx-auto">
         <SectionHeader
-          label="02 — Skills"
+          label="Skills & Projects"
           title="Skills & Expertise"
           description="A comprehensive overview of my technical and creative abilities across multiple disciplines."
         />

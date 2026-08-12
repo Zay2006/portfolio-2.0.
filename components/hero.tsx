@@ -1,12 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowDown, Download, Mail, Github, Linkedin, Play } from "lucide-react"
+import { ArrowDown, Download, Github, Linkedin, Play, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useReducedMotion } from "@/lib/use-reduced-motion"
 
-const ROLES = ["Voice Actor", "Tech Enthusiast", "Creative Artist", "Esports Enthusiast"]
+const ROLES = ["Outreach Coordinator", "Voice Actor", "Content Creator", "Full-Stack Developer"]
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false)
@@ -65,9 +66,9 @@ export default function Hero() {
   if (!mounted) return null
 
   const stats = [
-    { number: "4+", label: "Projects Completed" },
-    { number: "2+", label: "Years Experience" },
-    { number: "100%", label: "Client Satisfaction" },
+    { number: "75+", label: "Students Mentored" },
+    { number: "5+", label: "Years Experience" },
+    { number: "4+", label: "Projects Built" },
   ]
 
   return (
@@ -144,26 +145,37 @@ export default function Hero() {
             </div>
 
             <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 mb-8">
-              Bridging storytelling, innovation, and artistry across voice acting, development, and creative tech.
+              An outreach professional, voice actor, and creative storyteller passionate about technology, education,
+              and community.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-stretch sm:items-center mb-8">
               <Button
                 className="rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group shadow-lg shadow-purple-500/25"
-                onClick={() => {
-                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
-                }}
+                asChild
               >
-                <Play className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                View My Work
+                <Link href="/skills">
+                  <Play className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  View My Work
+                </Link>
               </Button>
               <Button
                 variant="outline"
                 className="rounded-full border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
+                asChild
+              >
+                <Link href="/contact">
+                  <Mail className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
+                  Get In Touch
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                className="rounded-full border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm hidden sm:inline-flex"
                 onClick={handleDownloadResume}
               >
                 <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
-                Download Resume
+                Resume
               </Button>
             </div>
 
@@ -205,10 +217,10 @@ export default function Hero() {
                   <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center text-3xl font-display font-bold text-white mb-4 shadow-lg">
                     IW
                   </div>
-                  <p className="text-white/90 font-display text-xl font-semibold">Creative Developer</p>
+                  <p className="text-white/90 font-display text-xl font-semibold">Tech Outreach Coordinator</p>
                   <p className="text-white/70 text-sm mt-2">& Voice Artist</p>
                   <div className="flex gap-2 mt-6 flex-wrap justify-center">
-                    {["React", "Next.js", "VO", "Design"].map((tag) => (
+                    {["React", "Outreach", "VO", "Esports"].map((tag) => (
                       <span key={tag} className="px-3 py-1 text-xs rounded-full bg-white/20 text-white backdrop-blur-sm">
                         {tag}
                       </span>
@@ -241,24 +253,26 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.8 }}
-        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.button
-          animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-          className="cursor-pointer p-2 rounded-full border border-gray-300/50 dark:border-gray-600/50 bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm"
-          onClick={() => {
-            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
-          }}
-          aria-label="Scroll to about section"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2"
         >
-          <ArrowDown className="h-5 w-5 text-gray-600 dark:text-gray-400" />
-        </motion.button>
-      </motion.div>
+          <Link
+            href="/about"
+            aria-label="Go to about page"
+            className="inline-block"
+          >
+            <motion.span
+              animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              className="cursor-pointer p-2 rounded-full border border-gray-300/50 dark:border-gray-600/50 bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm inline-flex"
+            >
+              <ArrowDown className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+            </motion.span>
+          </Link>
+        </motion.div>
     </section>
   )
 }

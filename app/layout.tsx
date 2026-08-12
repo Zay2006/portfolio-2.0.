@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Space_Grotesk } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import SiteLayout from "@/components/site-layout"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,7 +17,8 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Isaiah Wright - Portfolio",
-  description: "Voice Actor | Tech Enthusiast | Creative Artist | Esports Enthusiast",
+  description:
+    "Outreach Coordinator | Voice Actor | Content Creator | Workforce Development Advocate | Philadelphia",
   generator: "v0.app",
 }
 
@@ -29,7 +31,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          <SiteLayout>{children}</SiteLayout>
         </ThemeProvider>
       </body>
     </html>

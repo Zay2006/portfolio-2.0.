@@ -10,7 +10,7 @@ export default function Footer() {
               Isaiah Wright
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm sm:text-base">
-              Voice Actor · Tech Enthusiast · Creative Artist · Esports Enthusiast
+              Outreach Coordinator · Voice Actor · Content Creator · Esports Enthusiast
             </p>
           </div>
           <div className="flex space-x-3">
