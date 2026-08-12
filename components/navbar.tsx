@@ -1,103 +1,179 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
+import { useActiveSection } from "@/lib/use-active-section"
+
+const navItems = [
+  { name: "About", href: "#about", id: "about" },
+  { name: "Skills", href: "#skills", id: "skills" },
+  { name: "Experience", href: "#experience", id: "experience" },
+  { name: "Projects", href: "#projects", id: "projects" },
+  { name: "Contact", href: "#contact", id: "contact" },
+]
+
+const sectionIds = navItems.map((item) => item.id)
 
 export default function Navbar() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const activeSection = useActiveSection(sectionIds)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
-  const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
-  ]
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isMenuOpen])
 
   if (!mounted) return null
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border-b border-white/20 dark:border-gray-800/50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
             <a
               href="#"
-              className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600"
+              className="text-lg sm:text-xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600"
             >
               Isaiah Wright
             </a>
-          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors text-sm font-medium"
-              >
-                {item.name}
-              </a>
-            ))}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
-          </nav>
-
-          {/* Mobile Navigation Toggle */}
-          <div className="flex lg:hidden items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
-            <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-          <div className="container mx-auto px-4 py-4">
-            <nav className="flex flex-col space-y-4">
+            <nav className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 font-medium"
-                  onClick={() => setIsMenuOpen(false)}
+                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                    activeSection === item.id
+                      ? "text-purple-600 dark:text-purple-400"
+                      : "text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
+                  }`}
                 >
                   {item.name}
+                  {activeSection === item.id && (
+                    <motion.span
+                      layoutId="activeNav"
+                      className="absolute inset-0 bg-purple-100/80 dark:bg-purple-900/30 rounded-full -z-10"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
                 </a>
               ))}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                aria-label="Toggle theme"
+                className="ml-2 rounded-full"
+              >
+                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
             </nav>
+
+            <div className="flex lg:hidden items-center space-x-1">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                aria-label="Toggle theme"
+                className="rounded-full"
+              >
+                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMenuOpen(true)}
+                aria-label="Open menu"
+                className="rounded-full"
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
-      )}
-    </header>
+      </header>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm lg:hidden"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <motion.nav
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 right-0 z-50 w-72 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-l border-gray-200/50 dark:border-gray-800/50 p-6 lg:hidden"
+            >
+              <div className="flex justify-between items-center mb-8">
+                <span className="font-display font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+                  Menu
+                </span>
+                <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
+                  <X className="h-5 w-5" />
+                </Button>
+              </div>
+              <div className="flex flex-col space-y-2">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`px-4 py-3 rounded-xl font-medium transition-colors ${
+                      activeSection === item.id
+                        ? "bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    }`}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.nav>
+          </>
+        )}
+      </AnimatePresence>
+
+      <nav className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3">
+        {navItems.map((item) => (
+          <a
+            key={item.id}
+            href={item.href}
+            aria-label={item.name}
+            className="group flex items-center justify-end gap-2"
+          >
+            <span className="opacity-0 group-hover:opacity-100 text-xs font-medium text-gray-500 dark:text-gray-400 transition-opacity">
+              {item.name}
+            </span>
+            <span
+              className={`block w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                activeSection === item.id
+                  ? "bg-purple-600 scale-125"
+                  : "bg-gray-300 dark:bg-gray-600 group-hover:bg-purple-400"
+              }`}
+            />
+          </a>
+        ))}
+      </nav>
+    </>
   )
 }

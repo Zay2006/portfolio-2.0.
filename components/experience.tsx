@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Calendar, MapPin, Award, TrendingUp } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import SectionHeader from "@/components/section-header"
 
 export default function Experience() {
   const experiences = [
@@ -76,41 +77,33 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-20 px-4 bg-gray-50 dark:bg-gray-800">
+    <section id="experience" className="py-16 sm:py-20 px-4 relative">
+      <div className="absolute inset-0 bg-gray-50/80 dark:bg-gray-800/30 -z-10" />
       <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
-            Experience & Journey
-          </h2>
-          <p className="max-w-3xl mx-auto text-lg text-gray-700 dark:text-gray-300">
-            My professional journey across technology, creative arts, and voice acting, showcasing growth and
-            versatility.
-          </p>
-        </motion.div>
+        <SectionHeader
+          label="03 — Experience"
+          title="Experience & Journey"
+          description="My professional journey across technology, creative arts, and voice acting, showcasing growth and versatility."
+        />
 
-        {/* Timeline */}
-        <div className="relative mb-16">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-600 to-indigo-600 rounded-full"></div>
+        <div className="relative max-w-4xl mx-auto">
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-600 to-indigo-600 md:-translate-x-1/2 rounded-full" />
 
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className={`relative flex items-center mb-12 ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="relative pl-12 md:pl-0 mb-10 md:mb-12 md:flex md:items-start md:even:flex-row-reverse"
             >
-              <div className={`w-1/2 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
-                <Card className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
+              <div className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-purple-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg z-10" />
+
+              <div className="md:w-1/2 md:pr-10 md:even:pr-0 md:even:pl-10">
+                <Card className="glass-card border-none">
+                  <CardHeader className="pb-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                       <Badge
                         variant={
                           exp.type === "Freelance" ? "default" : exp.type === "Creative" ? "secondary" : "outline"
@@ -118,27 +111,29 @@ export default function Experience() {
                       >
                         {exp.type}
                       </Badge>
-                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                        <Calendar className="h-4 w-4 mr-1" />
+                      <div className="flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                        <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
                         {exp.period}
                       </div>
                     </div>
-                    <CardTitle className="text-xl">{exp.title}</CardTitle>
-                    <CardDescription className="flex items-center text-base">
+                    <CardTitle className="text-lg sm:text-xl font-display">{exp.title}</CardTitle>
+                    <CardDescription className="flex flex-wrap items-center text-sm sm:text-base gap-1">
                       <span className="font-medium">{exp.company}</span>
-                      <MapPin className="h-4 w-4 mx-2" />
+                      <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                       {exp.location}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-gray-700 dark:text-gray-300">{exp.description}</p>
+                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">{exp.description}</p>
 
                     <div>
-                      <h4 className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Key Achievements:</h4>
+                      <h4 className="font-semibold mb-2 text-sm sm:text-base text-gray-800 dark:text-gray-200">
+                        Key Achievements
+                      </h4>
                       <ul className="space-y-1">
                         {exp.achievements.map((achievement, achIndex) => (
-                          <li key={achIndex} className="text-sm text-gray-600 dark:text-gray-400 flex items-start">
-                            <span className="text-purple-600 dark:text-purple-400 mr-2">•</span>
+                          <li key={achIndex} className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex items-start">
+                            <span className="text-purple-600 dark:text-purple-400 mr-2 mt-0.5">•</span>
                             {achievement}
                           </li>
                         ))}
@@ -146,8 +141,10 @@ export default function Experience() {
                     </div>
 
                     <div>
-                      <h4 className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Technologies & Skills:</h4>
-                      <div className="flex flex-wrap gap-2">
+                      <h4 className="font-semibold mb-2 text-sm sm:text-base text-gray-800 dark:text-gray-200">
+                        Technologies & Skills
+                      </h4>
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {exp.technologies.map((tech, techIndex) => (
                           <Badge key={techIndex} variant="outline" className="text-xs">
                             {tech}
@@ -158,35 +155,34 @@ export default function Experience() {
                   </CardContent>
                 </Card>
               </div>
-
-              {/* Timeline dot */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-purple-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg"></div>
             </motion.div>
           ))}
         </div>
 
-        {/* Achievements */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
+          className="mt-8 sm:mt-12"
         >
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-800 dark:text-gray-200">Key Achievements</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <h3 className="text-xl sm:text-2xl font-display font-bold text-center mb-6 sm:mb-8 text-gray-800 dark:text-gray-200">
+            Key Achievements
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="text-center p-6 rounded-lg bg-white dark:bg-gray-700 shadow-md"
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ scale: 1.03, y: -4 }}
+                className="text-center p-5 sm:p-6 rounded-2xl glass-card"
               >
-                <achievement.icon className="h-12 w-12 mx-auto mb-4 text-purple-600 dark:text-purple-400" />
-                <h4 className="font-bold mb-2 text-gray-800 dark:text-gray-200">{achievement.title}</h4>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">{achievement.description}</p>
+                <achievement.icon className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 text-purple-600 dark:text-purple-400" />
+                <h4 className="font-display font-bold mb-2 text-gray-800 dark:text-gray-200">{achievement.title}</h4>
+                <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">{achievement.description}</p>
               </motion.div>
             ))}
           </div>
