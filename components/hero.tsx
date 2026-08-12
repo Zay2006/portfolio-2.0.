@@ -107,8 +107,10 @@ export default function Hero() {
               Portfolio 2026
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 mb-4 sm:mb-6">
-              Isaiah Wright
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold mb-4 sm:mb-6">
+              <span className="gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600">
+                Isaiah Wright
+              </span>
             </h1>
 
             <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 min-h-[3rem] mb-6">

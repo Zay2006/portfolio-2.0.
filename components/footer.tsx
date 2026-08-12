@@ -6,8 +6,8 @@ export default function Footer() {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <h3 className="text-xl font-display font-bold gradient-text bg-gradient-to-r from-purple-600 to-indigo-600">
-              Isaiah Wright
+            <h3 className="text-xl font-display font-bold">
+              <span className="gradient-text bg-gradient-to-r from-purple-600 to-indigo-600">Isaiah Wright</span>
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm sm:text-base">
               Outreach Coordinator · Voice Actor · Content Creator · Esports Enthusiast

@@ -13,7 +13,7 @@ export default function Contact() {
     <section id="contact" className="py-16 sm:py-20 px-4">
       <div className="container mx-auto">
         <SectionHeader
-          label="05 — Contact"
+          label="Contact"
           title="Get In Touch"
           description="Have a project in mind or want to collaborate? Feel free to reach out!"
         />

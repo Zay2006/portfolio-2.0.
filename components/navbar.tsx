@@ -45,9 +45,9 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             <Link
               href="/"
-              className="text-lg sm:text-xl font-display font-bold gradient-text bg-gradient-to-r from-purple-600 to-indigo-600"
+              className="text-lg sm:text-xl font-display font-bold"
             >
-              Isaiah Wright
+              <span className="gradient-text bg-gradient-to-r from-purple-600 to-indigo-600">Isaiah Wright</span>
             </Link>
 
             <nav className="hidden lg:flex items-center space-x-1">
@@ -126,8 +126,8 @@ export default function Navbar() {
               className="fixed inset-y-0 right-0 z-50 w-72 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-l border-gray-200/50 dark:border-gray-800/50 p-6 lg:hidden"
             >
               <div className="flex justify-between items-center mb-8">
-                <span className="font-display font-bold text-lg gradient-text bg-gradient-to-r from-purple-600 to-indigo-600">
-                  Menu
+                <span className="font-display font-bold text-lg">
+                  <span className="gradient-text bg-gradient-to-r from-purple-600 to-indigo-600">Menu</span>
                 </span>
                 <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
                   <X className="h-5 w-5" />
