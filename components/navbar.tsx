@@ -50,12 +50,12 @@ export default function Navbar() {
               <span className="gradient-text bg-gradient-to-r from-purple-600 to-indigo-600">Isaiah Wright</span>
             </Link>
 
-            <nav className="hidden lg:flex items-center space-x-1">
+            <nav className="hidden lg:flex items-center gap-2">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                  className={`relative inline-flex shrink-0 px-4 py-2 text-sm font-medium rounded-full transition-colors ${
                     isActive(item.href)
                       ? "text-purple-600 dark:text-purple-400"
                       : "text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"

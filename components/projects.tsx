@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { ExternalLink, Github, Play, Calendar, Users, Star } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -67,19 +66,6 @@ export default function Projects() {
     },
   ]
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  }
-
   return (
     <section id="projects" className="py-16 sm:py-20 px-4 relative">
       <div className="absolute inset-0 bg-gray-50/80 dark:bg-gray-800/30 -z-10" />
@@ -90,19 +76,9 @@ export default function Projects() {
           description="A showcase of my recent work demonstrating skills in web development, database management, UI/UX design, and full-stack application development."
         />
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              className={index === 0 ? "lg:col-span-2" : ""}
-            >
+            <div key={index} className={index === 0 ? "lg:col-span-2" : ""}>
               <Card className="h-full glass-card border-none overflow-hidden group">
                 <div className={`h-1.5 bg-gradient-to-r ${project.color}`} />
 
@@ -198,9 +174,9 @@ export default function Projects() {
                   </Button>
                 </CardFooter>
               </Card>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

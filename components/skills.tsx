@@ -1,6 +1,5 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { Code, Mic, Palette, Database, Globe, Zap, Users } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,16 +8,12 @@ import SectionHeader from "@/components/section-header"
 
 function AnimatedProgress({ value, delay }: { value: number; delay: number }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-  const [displayValue, setDisplayValue] = useState(0)
+  const [displayValue, setDisplayValue] = useState(value)
 
   useEffect(() => {
-    if (!isInView) return
-    const timeout = setTimeout(() => {
-      setDisplayValue(value)
-    }, delay * 100)
+    const timeout = setTimeout(() => setDisplayValue(value), delay * 100)
     return () => clearTimeout(timeout)
-  }, [isInView, value, delay])
+  }, [value, delay])
 
   return (
     <div ref={ref}>
@@ -93,58 +88,40 @@ export default function Skills() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 mb-12 sm:mb-16">
           {skillCategories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <Card className="h-full glass-card border-none">
-                <div className={`h-1.5 bg-gradient-to-r ${category.color}`} />
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-lg sm:text-xl font-display">
-                    <div className={`p-2 rounded-lg bg-gradient-to-br ${category.color} text-white`}>
-                      <category.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+            <Card key={index} className="h-full glass-card border-none">
+              <div className={`h-1.5 bg-gradient-to-r ${category.color}`} />
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3 text-lg sm:text-xl font-display">
+                  <div className={`p-2 rounded-lg bg-gradient-to-br ${category.color} text-white`}>
+                    <category.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </div>
+                  {category.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {category.skills.map((skill, skillIndex) => (
+                  <div key={skillIndex} className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
+                      <span className="text-sm font-mono text-purple-600 dark:text-purple-400">{skill.level}%</span>
                     </div>
-                    {category.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-                        <span className="text-sm font-mono text-purple-600 dark:text-purple-400">{skill.level}%</span>
-                      </div>
-                      <AnimatedProgress value={skill.level} delay={skillIndex} />
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </motion.div>
+                    <AnimatedProgress value={skill.level} delay={skillIndex} />
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+        <div>
           <h3 className="text-xl sm:text-2xl font-display font-bold text-center mb-6 sm:mb-8 text-gray-800 dark:text-gray-200">
             Core Competencies
           </h3>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {softSkills.map((skill, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                className="text-center p-4 sm:p-6 rounded-2xl glass-card"
+                className="text-center p-4 sm:p-6 rounded-2xl glass-card hover:scale-[1.03] hover:-translate-y-1 transition-transform"
               >
                 <skill.icon className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 sm:mb-3 text-purple-600 dark:text-purple-400" />
                 <h4 className="font-semibold mb-1 sm:mb-2 text-sm sm:text-base text-gray-800 dark:text-gray-200">
@@ -153,10 +130,10 @@ export default function Skills() {
                 <div className="text-xl sm:text-2xl font-display font-bold text-purple-600 dark:text-purple-400">
                   {skill.level}%
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

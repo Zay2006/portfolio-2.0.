@@ -1,6 +1,3 @@
-"use client"
-
-import { motion } from "framer-motion"
 import { Mic, Cpu, Palette, Gamepad2, Users } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import SectionHeader from "@/components/section-header"
@@ -46,13 +43,7 @@ export default function About() {
           description="Hello! I'm Isaiah Wright—An outreach professional, voice actor, and creative storyteller who is passionate about helping people discover opportunities in technology while expressing creativity through media and performance."
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 sm:mb-12"
-        >
+        <div className="mb-10 sm:mb-12">
           <Card className="glass-card border-none">
             <CardContent className="pt-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
               <p>
@@ -67,44 +58,30 @@ export default function About() {
               </p>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         <div className="space-y-4 sm:space-y-6">
-          {sections.map((section, index) => (
-            <motion.div
-              key={section.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="glass-card border-none overflow-hidden">
-                <div className={`h-1.5 bg-gradient-to-r ${section.color}`} />
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2.5 rounded-xl bg-gradient-to-br ${section.color} text-white shadow-md`}>
-                      <section.icon className="h-5 w-5" />
-                    </div>
-                    <CardTitle className="text-lg sm:text-xl font-display">{section.title}</CardTitle>
+          {sections.map((section) => (
+            <Card key={section.title} className="glass-card border-none overflow-hidden">
+              <div className={`h-1.5 bg-gradient-to-r ${section.color}`} />
+              <CardHeader className="pb-2">
+                <div className="flex items-center gap-3">
+                  <div className={`p-2.5 rounded-xl bg-gradient-to-br ${section.color} text-white shadow-md`}>
+                    <section.icon className="h-5 w-5" />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {section.content}
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+                  <CardTitle className="text-lg sm:text-xl font-display">{section.title}</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {section.content}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-10 sm:mt-12"
-        >
+        <div className="mt-10 sm:mt-12">
           <Card className="glass-card border-none bg-gradient-to-r from-purple-600/5 to-indigo-600/5">
             <CardContent className="pt-6 flex items-start gap-4">
               <div className="p-2.5 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 text-white shrink-0">
@@ -116,7 +93,7 @@ export default function About() {
               </p>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
