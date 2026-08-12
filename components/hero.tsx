@@ -164,7 +164,7 @@ export default function Hero() {
               </Button>
               <Button
                 variant="outline"
-                className="rounded-full border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm hidden sm:inline-flex"
+                className="rounded-full border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
                 onClick={handleDownloadResume}
               >
                 <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
