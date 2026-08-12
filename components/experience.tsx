@@ -1,80 +1,152 @@
 "use client"
 
+import { useRef } from "react"
 import { motion } from "framer-motion"
-import { Calendar, MapPin, Award, TrendingUp } from "lucide-react"
+import { Calendar, MapPin, Award, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import SectionHeader from "@/components/section-header"
 
-export default function Experience() {
-  const experiences = [
-    {
-      title: "Voice Actor",
-      company: "Independent Contractor",
-      location: "Philadelphia, PA",
-      period: "2020 - Present",
-      type: "Creative",
-      description:
-        "Providing professional voice-over services for various projects including character voices, narration, and commercial work. Specialized in bringing characters and stories to life through engaging performances.",
-      achievements: [
-        "Completed 20+ voice acting projects",
-        "Developed unique character voices for animated content",
-        "Open for bookings — character work, narration, and esports announcing",
-        "Built a professional home studio setup",
-      ],
-      technologies: ["Audio Editing", "Character Development", "Script Analysis", "Studio Recording"],
-    },
-    {
-      title: "Tech Support Specialist",
-      company: "Family & Community",
-      location: "Philadelphia, PA",
-      period: "2023 - 2025",
-      type: "Technical",
-      description:
-        "Served as the go-to person for tech issues across family and community, developing deep expertise in troubleshooting, system optimization, and user support across various devices and platforms.",
-      achievements: [
-        "Resolved 100+ technical issues across different platforms",
-        "Developed systematic troubleshooting methodologies",
-        "Gained expertise in Windows, macOS, and mobile platforms",
-        "Built reputation as a reliable tech problem solver",
-      ],
-      technologies: ["Windows", "macOS", "iOS", "Android", "Hardware Troubleshooting", "Network Setup"],
-    },
-    {
-      title: "Full-Stack Developer",
-      company: "Freelance Projects",
-      location: "Remote",
-      period: "2024 - Present",
-      type: "Freelance",
-      description:
-        "Developed multiple web applications using modern technologies including React, Next.js, and MySQL. Created user-friendly interfaces and robust backend systems for various clients.",
-      achievements: [
-        "Built 4+ complete web applications from scratch",
-        "Implemented responsive designs with 100% mobile compatibility",
-        "Integrated MySQL databases with optimized queries",
-        "Achieved 98% client satisfaction rate",
-      ],
-      technologies: ["React", "Next.js", "TypeScript", "MySQL", "Node.js", "Tailwind CSS"],
-    },
-  ]
+const experiences = [
+  {
+    title: "Voice Actor",
+    company: "Independent Contractor",
+    location: "Philadelphia, PA",
+    period: "2020 - Present",
+    type: "Creative",
+    description:
+      "Providing professional voice-over services including character voices, narration, and commercial work. Open for bookings in character work, narration, and esports announcing.",
+    achievements: [
+      "Completed 20+ voice acting projects",
+      "Developed unique character voices for animated content",
+      "Built a professional home studio setup",
+    ],
+    technologies: ["Audio Editing", "Character Development", "Script Analysis", "Studio Recording"],
+  },
+  {
+    title: "Tech Support Specialist",
+    company: "Family & Community",
+    location: "Philadelphia, PA",
+    period: "2023 - 2025",
+    type: "Technical",
+    description:
+      "Served as the go-to person for tech issues across family and community, developing expertise in troubleshooting, system optimization, and user support.",
+    achievements: [
+      "Resolved 100+ technical issues across different platforms",
+      "Developed systematic troubleshooting methodologies",
+      "Gained expertise in Windows, macOS, and mobile platforms",
+    ],
+    technologies: ["Windows", "macOS", "iOS", "Android", "Hardware Troubleshooting"],
+  },
+  {
+    title: "Associate & Instructional Intern",
+    company: "Launchpad Philly",
+    location: "Philadelphia, PA",
+    period: "Jan 2024 - Jun 2025",
+    type: "Outreach",
+    description:
+      "Developed full-stack applications while mentoring high school students in coding fundamentals and supporting youth development programming.",
+    achievements: [
+      "Developed full-stack apps using React.js, Next.js, and Python",
+      "Mentored 75+ high school students in coding fundamentals",
+      "Assisted with curriculum delivery and classroom facilitation",
+      "Collaborated in agile development and instructional environments",
+    ],
+    technologies: ["React", "Next.js", "Python", "Youth Mentorship", "Curriculum Delivery"],
+  },
+  {
+    title: "Program Assistant",
+    company: "Office of Reentry Partnerships",
+    location: "Philadelphia, PA",
+    period: "Jul 2024 - Aug 2024",
+    type: "Outreach",
+    description:
+      "Supported juvenile reentry initiatives through research, resource development, and community outreach coordination.",
+    achievements: [
+      "Supported juvenile reentry initiatives through research and outreach",
+      "Assisted in identifying funding opportunities",
+      "Improved workforce development resources for at-risk populations",
+    ],
+    technologies: ["Community Outreach", "Research", "Workforce Development"],
+  },
+  {
+    title: "Sales Associate",
+    company: "Apple Inc.",
+    location: "Willow Grove, PA",
+    period: "Oct 2024 - Jan 2025",
+    type: "Technical",
+    description:
+      "Provided customer-facing technical support and product education in a high-volume retail environment.",
+    achievements: [
+      "Delivered personalized customer solutions using technical product knowledge",
+      "Supported sales performance in a high-volume retail environment",
+      "Applied technical expertise to educate customers on Apple products",
+    ],
+    technologies: ["Customer Service", "Technical Support", "Product Education"],
+  },
+  {
+    title: "Full-Stack Developer",
+    company: "Freelance Projects",
+    location: "Remote",
+    period: "2024 - Present",
+    type: "Freelance",
+    description:
+      "Built multiple web applications including a YouTube Viewer, Social Dashboard, and productivity timer using modern full-stack technologies.",
+    achievements: [
+      "Built 4+ complete web applications from scratch",
+      "Implemented responsive designs with 100% mobile compatibility",
+      "Integrated MySQL databases with optimized queries",
+    ],
+    technologies: ["React", "Next.js", "TypeScript", "MySQL", "Tailwind CSS"],
+  },
+  {
+    title: "Tech Outreach Coordinator VISTA",
+    company: "Launchpad Philly / AmeriCorps (PHENND Fellow)",
+    location: "Philadelphia, PA",
+    period: "Aug 2025 - Present",
+    type: "Outreach",
+    description:
+      "Lead outreach and recruitment strategy for Launchpad Philly's 4th cohort, building partnerships and digital campaigns to expand access to tech education.",
+    achievements: [
+      "Lead outreach targeting 250+ student applications for Cohort 4",
+      "Build partnerships with schools, nonprofits, and community organizations",
+      "Design and manage TikTok and Instagram campaigns",
+      "Develop an Outreach Strategy Manual for sustainable recruitment",
+    ],
+    technologies: ["Community Outreach", "Social Media Strategy", "Partnership Development", "Recruitment"],
+  },
+]
 
-  const achievements = [
-    {
-      icon: Award,
-      title: "Self-Taught Developer",
-      description: "Mastered multiple programming languages and frameworks through dedication and continuous learning",
-    },
-    {
-      icon: TrendingUp,
-      title: "Project Success Rate",
-      description: "Maintained 100% project completion rate with consistent client satisfaction",
-    },
-    {
-      icon: Calendar,
-      title: "Continuous Growth",
-      description: "5+ years of consistent skill development and professional growth across multiple disciplines",
-    },
-  ]
+const achievements = [
+  {
+    icon: Award,
+    title: "PHENND Fellow",
+    description: "Selected as AmeriCorps PHENND Fellow serving as Tech Outreach Coordinator at Launchpad Philly",
+  },
+  {
+    icon: TrendingUp,
+    title: "75+ Students Mentored",
+    description: "Guided high school students through coding fundamentals and professional development",
+  },
+  {
+    icon: Calendar,
+    title: "Learn React Certified",
+    description: "Codecademy React Certification (2025) plus Launchpad full-stack workforce training",
+  },
+]
+
+export default function Experience() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return
+    const amount = scrollRef.current.clientWidth * 0.8
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    })
+  }
 
   return (
     <section className="py-16 sm:py-20 px-4 relative">
@@ -83,88 +155,114 @@ export default function Experience() {
         <SectionHeader
           label="Experience"
           title="Experience & Journey"
-          description="My professional journey across voice acting, technology, and development — showcasing growth, versatility, and a passion for storytelling and innovation."
+          description="My professional journey across outreach, technology, voice acting, and development — scroll through the timeline to explore each chapter."
         />
 
-        <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-600 to-indigo-600 md:-translate-x-1/2 rounded-full" />
+        <div className="relative max-w-6xl mx-auto mb-4">
+          <div className="hidden sm:flex absolute -top-2 right-0 gap-2 z-10">
+            <Button variant="outline" size="icon" onClick={() => scroll("left")} aria-label="Scroll timeline left" className="rounded-full bg-white/80 dark:bg-gray-900/80">
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="icon" onClick={() => scroll("right")} aria-label="Scroll timeline right" className="rounded-full bg-white/80 dark:bg-gray-900/80">
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left mb-4">
+            ← Scroll or swipe to explore the timeline →
+          </p>
+        </div>
 
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="relative pl-12 md:pl-0 mb-10 md:mb-12 md:flex md:items-start md:even:flex-row-reverse"
-            >
-              <div className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-4 h-4 bg-purple-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg z-10" />
+        <div className="relative max-w-6xl mx-auto">
+          <div
+            ref={scrollRef}
+            className="overflow-x-auto pb-8 -mx-4 px-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-purple-300 dark:scrollbar-thumb-purple-700"
+            style={{ scrollbarWidth: "thin" }}
+          >
+            <div className="relative flex gap-6 min-w-max pt-8 pb-4">
+              <div className="absolute top-[2.125rem] left-0 right-0 h-0.5 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 rounded-full" />
 
-              <div className="md:w-1/2 md:pr-10 md:even:pr-0 md:even:pl-10">
-                <Card className="glass-card border-none">
-                  <CardHeader className="pb-3">
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <Badge
-                        variant={
-                          exp.type === "Freelance" ? "default" : exp.type === "Creative" ? "secondary" : "outline"
-                        }
-                      >
-                        {exp.type}
-                      </Badge>
-                      <div className="flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                        <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
-                        {exp.period}
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  className="relative flex flex-col w-[300px] sm:w-[340px] shrink-0 snap-center"
+                >
+                  <div className="flex justify-center mb-4 relative z-10">
+                    <div className="w-4 h-4 bg-purple-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg ring-2 ring-purple-300 dark:ring-purple-700" />
+                  </div>
+
+                  <Card className="glass-card border-none flex-1">
+                    <CardHeader className="pb-3">
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <Badge
+                          variant={
+                            exp.type === "Freelance"
+                              ? "default"
+                              : exp.type === "Creative"
+                                ? "secondary"
+                                : exp.type === "Outreach"
+                                  ? "default"
+                                  : "outline"
+                          }
+                          className={exp.type === "Outreach" ? "bg-purple-600 hover:bg-purple-700" : ""}
+                        >
+                          {exp.type}
+                        </Badge>
+                        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                          <Calendar className="h-3.5 w-3.5 mr-1" />
+                          {exp.period}
+                        </div>
                       </div>
-                    </div>
-                    <CardTitle className="text-lg sm:text-xl font-display">{exp.title}</CardTitle>
-                    <CardDescription className="flex flex-wrap items-center text-sm sm:text-base gap-1">
-                      <span className="font-medium">{exp.company}</span>
-                      <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                      {exp.location}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">{exp.description}</p>
+                      <CardTitle className="text-base sm:text-lg font-display leading-snug">{exp.title}</CardTitle>
+                      <CardDescription className="flex flex-col gap-0.5 text-sm">
+                        <span className="font-medium text-gray-700 dark:text-gray-300">{exp.company}</span>
+                        <span className="flex items-center gap-1">
+                          <MapPin className="h-3.5 w-3.5" />
+                          {exp.location}
+                        </span>
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{exp.description}</p>
 
-                    <div>
-                      <h4 className="font-semibold mb-2 text-sm sm:text-base text-gray-800 dark:text-gray-200">
-                        Key Achievements
-                      </h4>
-                      <ul className="space-y-1">
-                        {exp.achievements.map((achievement, achIndex) => (
-                          <li key={achIndex} className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex items-start">
-                            <span className="text-purple-600 dark:text-purple-400 mr-2 mt-0.5">•</span>
-                            {achievement}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                      <div>
+                        <h4 className="font-semibold mb-1.5 text-xs sm:text-sm text-gray-800 dark:text-gray-200">
+                          Key Achievements
+                        </h4>
+                        <ul className="space-y-1">
+                          {exp.achievements.map((achievement, achIndex) => (
+                            <li key={achIndex} className="text-xs text-gray-600 dark:text-gray-400 flex items-start">
+                              <span className="text-purple-600 dark:text-purple-400 mr-1.5 mt-0.5 shrink-0">•</span>
+                              {achievement}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    <div>
-                      <h4 className="font-semibold mb-2 text-sm sm:text-base text-gray-800 dark:text-gray-200">
-                        Technologies & Skills
-                      </h4>
-                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      <div className="flex flex-wrap gap-1.5">
                         {exp.technologies.map((tech, techIndex) => (
                           <Badge key={techIndex} variant="outline" className="text-xs">
                             {tech}
                           </Badge>
                         ))}
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </motion.div>
-          ))}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-8 sm:mt-12"
+          className="mt-8 sm:mt-12 max-w-6xl mx-auto"
         >
           <h3 className="text-xl sm:text-2xl font-display font-bold text-center mb-6 sm:mb-8 text-gray-800 dark:text-gray-200">
             Key Achievements

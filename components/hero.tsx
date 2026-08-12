@@ -114,7 +114,7 @@ export default function Hero() {
             </motion.p>
 
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 mb-4 sm:mb-6 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 mb-4 sm:mb-6"
               animate={prefersReducedMotion ? {} : { scale: [1, 1.01, 1] }}
               transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
             >
@@ -168,7 +168,7 @@ export default function Hero() {
                 onClick={handleDownloadResume}
               >
                 <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
-                Resume
+                Download Resume
               </Button>
             </div>
 

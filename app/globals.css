@@ -69,6 +69,10 @@
     @apply backdrop-blur-xl bg-white/70 dark:bg-gray-900/50 border border-white/30 dark:border-white/10 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300;
   }
 
+  .gradient-text {
+    @apply bg-clip-text text-transparent leading-[1.15] pb-1;
+  }
+
   .noise-overlay {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     opacity: 0.03;
