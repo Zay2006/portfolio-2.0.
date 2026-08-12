@@ -70,7 +70,12 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent leading-[1.15] pb-1;
+    @apply bg-clip-text text-transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    line-height: 1.2;
+    padding-bottom: 0.15em;
   }
 
   .noise-overlay {

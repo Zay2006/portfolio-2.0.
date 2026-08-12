@@ -182,12 +182,8 @@ export default function Experience() {
               <div className="absolute top-[2.125rem] left-0 right-0 h-0.5 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 rounded-full" />
 
               {experiences.map((exp, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
                   className="relative flex flex-col w-[300px] sm:w-[340px] shrink-0 snap-center"
                 >
                   <div className="flex justify-center mb-4 relative z-10">
@@ -251,7 +247,7 @@ export default function Experience() {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -269,19 +265,14 @@ export default function Experience() {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {achievements.map((achievement, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ scale: 1.03, y: -4 }}
-                className="text-center p-5 sm:p-6 rounded-2xl glass-card"
+                className="text-center p-5 sm:p-6 rounded-2xl glass-card hover:scale-[1.03] hover:-translate-y-1 transition-transform"
               >
                 <achievement.icon className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 text-purple-600 dark:text-purple-400" />
                 <h4 className="font-display font-bold mb-2 text-gray-800 dark:text-gray-200">{achievement.title}</h4>
                 <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">{achievement.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>

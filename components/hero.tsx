@@ -99,27 +99,17 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-sm font-mono text-purple-500 dark:text-purple-400 tracking-widest uppercase mb-4"
-            >
+            <p className="text-sm font-mono text-purple-500 dark:text-purple-400 tracking-widest uppercase mb-4">
               Portfolio 2026
-            </motion.p>
+            </p>
 
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 mb-4 sm:mb-6"
-              animate={prefersReducedMotion ? {} : { scale: [1, 1.01, 1] }}
-              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-            >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 mb-4 sm:mb-6">
               Isaiah Wright
-            </motion.h1>
+            </h1>
 
             <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 min-h-[3rem] mb-6">
               <span>I'm a</span>
@@ -226,9 +216,8 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
           className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-12 sm:mt-16 max-w-lg sm:max-w-2xl mx-auto"
         >
           {stats.map((stat, index) => (
@@ -246,12 +235,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2"
-        >
+        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2">
           <Link
             href="/about"
             aria-label="Go to about page"
@@ -265,7 +249,7 @@ export default function Hero() {
               <ArrowDown className="h-5 w-5 text-gray-600 dark:text-gray-400" />
             </motion.span>
           </Link>
-        </motion.div>
+        </div>
     </section>
   )
 }
