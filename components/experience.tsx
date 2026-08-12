@@ -104,7 +104,7 @@ const experiences = [
     title: "Tech Outreach Coordinator VISTA",
     company: "Launchpad Philly / AmeriCorps (PHENND Fellow)",
     location: "Philadelphia, PA",
-    period: "Aug 2025 - Present",
+      period: "Aug 2025 - Aug 2026",
     type: "Outreach",
     description:
       "Lead outreach and recruitment strategy for Launchpad Philly's 4th cohort, building partnerships and digital campaigns to expand access to tech education.",
