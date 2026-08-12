@@ -1,166 +1,132 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { ExternalLink, Github, Play, Calendar, Users, Star } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import SectionHeader from "@/components/section-header"
 
 export default function Projects() {
   const projects = [
     {
       title: "YouTube Viewer 2.0",
       description:
-        "A modern, feature-rich YouTube viewer application built from the ground up. Features include advanced search capabilities, playlist management, and a clean, intuitive interface that enhances the video browsing experience.",
-      longDescription:
-        "This project represents a complete redesign of my original YouTube viewer concept. Built with React and modern web technologies, it provides users with an enhanced way to discover and watch YouTube content with features like custom playlists, advanced filtering, and responsive design.",
+        "A modern, feature-rich YouTube viewer application built from the ground up. Features include advanced search capabilities, playlist management, and a clean, intuitive interface.",
       github: "https://github.com/Zay2006/YoutubeViewer2.0",
       demo: "https://youtube-viewer2-0.vercel.app",
-      image: "/youtube-viewer-interface.jpg",
       tags: ["React", "API Integration", "UI/UX", "Responsive Design"],
       color: "from-red-500 to-orange-500",
       status: "Completed",
       duration: "3 months",
       team: "Solo Project",
       highlights: ["Custom API Integration", "Responsive Design", "Advanced Search"],
+      initials: "YT",
     },
     {
       title: "Timed Timer 3.0",
       description:
-        "A sophisticated productivity timer application designed to enhance focus and work efficiency. Features customizable intervals, progress tracking, and analytics to help users optimize their work sessions.",
-      longDescription:
-        "The third iteration of my timer application, built with a focus on user experience and productivity enhancement. Includes Pomodoro technique support, session analytics, and customizable work/break intervals with visual and audio notifications.",
+        "A sophisticated productivity timer application designed to enhance focus and work efficiency. Features customizable intervals, progress tracking, and analytics.",
       github: "https://github.com/Zay2006/TimedTimer3.0",
       demo: "https://timed-timer3-0.vercel.app",
-      image: "/productivity-timer-app.jpg",
       tags: ["JavaScript", "Productivity", "Time Management", "Analytics"],
       color: "from-blue-500 to-cyan-500",
       status: "Completed",
       duration: "2 months",
       team: "Solo Project",
       highlights: ["Pomodoro Technique", "Session Analytics", "Custom Notifications"],
+      initials: "TT",
     },
     {
       title: "Social Dashboard 2.0",
       description:
-        "A comprehensive social media analytics dashboard that aggregates data from multiple platforms. Provides detailed insights, engagement metrics, and growth tracking with beautiful data visualizations.",
-      longDescription:
-        "An advanced analytics platform that connects to various social media APIs to provide unified insights. Features real-time data updates, customizable dashboards, and detailed reporting capabilities for content creators and businesses.",
+        "A comprehensive social media analytics dashboard that aggregates data from multiple platforms with beautiful data visualizations.",
       github: "https://github.com/Zay2006/social-dashboard-2.0",
       demo: "https://social-dashboard-delta.vercel.app",
-      image: "/social-media-dashboard-analytics.jpg",
       tags: ["MySQL", "Analytics", "Dashboard", "Data Visualization"],
       color: "from-purple-500 to-indigo-500",
       status: "Completed",
       duration: "4 months",
       team: "Solo Project",
       highlights: ["Multi-platform Integration", "Real-time Analytics", "Custom Reports"],
+      initials: "SD",
     },
     {
       title: "Young Saved Unashamed (YSU)",
       description:
-        "A faith-based community platform designed to connect young believers and provide spiritual resources. Features event management, community discussions, and resource sharing with a focus on building meaningful connections.",
-      longDescription:
-        "A comprehensive community platform built for young Christians to connect, share resources, and grow in their faith together. Includes user authentication, event management, discussion forums, and resource libraries with modern web technologies.",
+        "A faith-based community platform designed to connect young believers and provide spiritual resources with event management and discussions.",
       github: "https://github.com/Zay2006/young-saved-unashamed",
       demo: "https://young-saved-unashamed.vercel.app",
-      image: "/faith-community-platform.jpg",
       tags: ["Next.js", "Community", "Faith-Based", "Full-Stack"],
       color: "from-green-500 to-emerald-500",
       status: "Completed",
       duration: "5 months",
       team: "Solo Project",
       highlights: ["Community Features", "Event Management", "Resource Sharing"],
+      initials: "YS",
     },
   ]
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  }
-
   return (
-    <section id="projects" className="py-20 px-4 bg-gray-50 dark:bg-gray-800">
+    <section id="projects" className="py-16 sm:py-20 px-4 relative">
+      <div className="absolute inset-0 bg-gray-50/80 dark:bg-gray-800/30 -z-10" />
       <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
-            Featured Projects
-          </h2>
-          <p className="max-w-3xl mx-auto text-lg text-gray-700 dark:text-gray-300">
-            A showcase of my recent work demonstrating skills in web development, database management, UI/UX design, and
-            full-stack application development.
-          </p>
-        </motion.div>
+        <SectionHeader
+          label="Featured Work"
+          title="Featured Projects"
+          description="A showcase of my recent work demonstrating skills in web development, database management, UI/UX design, and full-stack application development."
+        />
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
           {projects.map((project, index) => (
-            <motion.div key={index} variants={item}>
-              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                <div className={`h-2 bg-gradient-to-r ${project.color}`}></div>
+            <div key={index} className={index === 0 ? "lg:col-span-2" : ""}>
+              <Card className="h-full glass-card border-none overflow-hidden group">
+                <div className={`h-1.5 bg-gradient-to-r ${project.color}`} />
 
-                {/* Project Image */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <Badge variant="secondary" className="bg-white/90 text-gray-800">
+                <div className="relative overflow-hidden aspect-video">
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                    <span className="text-5xl sm:text-6xl font-display font-bold text-white/30 group-hover:scale-110 transition-transform duration-500">
+                      {project.initials}
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-6">
+                    <span className="text-white font-semibold text-sm sm:text-base flex items-center gap-2">
+                      View Project <ExternalLink className="h-4 w-4" />
+                    </span>
+                  </div>
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                    <Badge variant="secondary" className="bg-white/90 text-gray-800 shadow-sm">
                       {project.status}
                     </Badge>
                   </div>
                 </div>
 
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="text-2xl font-bold">{project.title}</CardTitle>
-                    <div className="flex items-center space-x-1">
+                <CardHeader className="pb-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1">
+                    <CardTitle className="text-xl sm:text-2xl font-display font-bold">{project.title}</CardTitle>
+                    <div className="flex items-center space-x-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                        <Star key={i} className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-yellow-400 fill-current" />
                       ))}
                     </div>
                   </div>
-                  <CardDescription className="text-base">{project.description}</CardDescription>
+                  <CardDescription className="text-sm sm:text-base leading-relaxed">{project.description}</CardDescription>
                 </CardHeader>
 
                 <CardContent className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
                     <div className="flex items-center text-gray-600 dark:text-gray-400">
-                      <Calendar className="h-4 w-4 mr-2" />
+                      <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2 shrink-0" />
                       {project.duration}
                     </div>
                     <div className="flex items-center text-gray-600 dark:text-gray-400">
-                      <Users className="h-4 w-4 mr-2" />
+                      <Users className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2 shrink-0" />
                       {project.team}
                     </div>
                   </div>
 
                   <div>
-                    <h4 className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Key Highlights:</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <h4 className="font-semibold mb-2 text-sm text-gray-800 dark:text-gray-200">Key Highlights</h4>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {project.highlights.map((highlight, highlightIndex) => (
                         <Badge key={highlightIndex} variant="outline" className="text-xs">
                           {highlight}
@@ -170,25 +136,24 @@ export default function Projects() {
                   </div>
 
                   <div>
-                    <h4 className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Technologies:</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <h4 className="font-semibold mb-2 text-sm text-gray-800 dark:text-gray-200">Technologies</h4>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {project.tags.map((tag, tagIndex) => (
-                        <motion.span
+                        <span
                           key={tagIndex}
-                          whileHover={{ scale: 1.05 }}
-                          className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors cursor-default"
+                          className="px-2.5 sm:px-3 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-full text-xs sm:text-sm"
                         >
                           {tag}
-                        </motion.span>
+                        </span>
                       ))}
                     </div>
                   </div>
                 </CardContent>
 
-                <CardFooter className="flex gap-3">
+                <CardFooter className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
                   <Button
                     variant="default"
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
+                    className="w-full sm:flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md shadow-purple-500/20"
                     asChild
                   >
                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
@@ -198,7 +163,7 @@ export default function Projects() {
                   </Button>
                   <Button
                     variant="outline"
-                    className="flex-1 group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-300 bg-transparent"
+                    className="w-full sm:flex-1 bg-white/50 dark:bg-gray-900/50"
                     asChild
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -209,9 +174,9 @@ export default function Projects() {
                   </Button>
                 </CardFooter>
               </Card>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
