@@ -6,8 +6,6 @@ import { Calendar, MapPin, Award, TrendingUp, ChevronLeft, ChevronRight } from "
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import SectionHeader from "@/components/section-header"
-
 const experiences = [
   {
     title: "Voice Actor",
@@ -152,12 +150,6 @@ export default function Experience() {
     <section className="py-16 sm:py-20 px-4 relative">
       <div className="absolute inset-0 bg-gray-50/80 dark:bg-gray-800/30 -z-10" />
       <div className="container mx-auto">
-        <SectionHeader
-          label="Experience"
-          title="Experience & Journey"
-          description="My professional journey across outreach, technology, voice acting, and development — scroll through the timeline to explore each chapter."
-        />
-
         <div className="relative max-w-6xl mx-auto mb-4">
           <div className="hidden sm:flex absolute -top-2 right-0 gap-2 z-10">
             <Button variant="outline" size="icon" onClick={() => scroll("left")} aria-label="Scroll timeline left" className="rounded-full bg-white/80 dark:bg-gray-900/80">

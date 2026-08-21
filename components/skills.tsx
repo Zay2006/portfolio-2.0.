@@ -4,8 +4,6 @@ import { useRef, useEffect, useState } from "react"
 import { Code, Mic, Palette, Database, Globe, Zap, Users } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import SectionHeader from "@/components/section-header"
-
 function AnimatedProgress({ value, delay }: { value: number; delay: number }) {
   const ref = useRef(null)
   const [displayValue, setDisplayValue] = useState(value)
@@ -80,12 +78,6 @@ export default function Skills() {
   return (
     <section id="skills" className="py-16 sm:py-20 px-4">
       <div className="container mx-auto">
-        <SectionHeader
-          label="Skills & Projects"
-          title="Skills & Expertise"
-          description="A comprehensive overview of my technical and creative abilities across multiple disciplines."
-        />
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 mb-12 sm:mb-16">
           {skillCategories.map((category, index) => (
             <Card key={index} className="h-full glass-card border-none">

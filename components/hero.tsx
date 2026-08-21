@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowDown, Download, Github, Linkedin, Play, Mail } from "lucide-react"
+import { ArrowDown, Github, Linkedin, Play, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useReducedMotion } from "@/lib/use-reduced-motion"
 
@@ -47,16 +47,6 @@ export default function Hero() {
 
     return () => clearTimeout(timeout)
   }, [displayText, currentIndex, isDeleting, prefersReducedMotion])
-
-  const handleDownloadResume = () => {
-    const link = document.createElement("a")
-    link.href = "/Isaiah_Wright_Resume.pdf"
-    link.download = "Isaiah_Wright_Resume.pdf"
-    link.target = "_blank"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
 
   const stats = [
     { number: "75+", label: "Students Mentored" },
@@ -103,10 +93,6 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center lg:text-left"
           >
-            <p className="text-sm font-mono text-purple-500 dark:text-purple-400 tracking-widest uppercase mb-4">
-              Portfolio 2026
-            </p>
-
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold mb-4 sm:mb-6">
               <span className="gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600">
                 Isaiah Wright
@@ -153,14 +139,6 @@ export default function Hero() {
                   <Mail className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
                   Get In Touch
                 </Link>
-              </Button>
-              <Button
-                variant="outline"
-                className="rounded-full border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
-                onClick={handleDownloadResume}
-              >
-                <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
-                Download Resume
               </Button>
             </div>
 
