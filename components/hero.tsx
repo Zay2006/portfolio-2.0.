@@ -87,21 +87,20 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center lg:text-left"
-          >
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center max-w-3xl mx-auto"
+        >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold mb-4 sm:mb-6">
               <span className="gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600">
                 Isaiah Wright
               </span>
             </h1>
 
-            <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 min-h-[3rem] mb-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 min-h-[3rem] mb-6">
               <span>I'm a</span>
-              <span className="text-purple-600 dark:text-purple-400 font-semibold text-center sm:text-left">
+              <span className="text-purple-600 dark:text-purple-400 font-semibold text-center">
                 {displayText}
                 {!prefersReducedMotion && (
                   <motion.span
@@ -115,12 +114,12 @@ export default function Hero() {
               </span>
             </div>
 
-            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 mb-8">
+            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-xl mx-auto mb-8">
               An outreach professional, voice actor, and creative storyteller passionate about technology, education,
               and community.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-stretch sm:items-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-8">
               <Button
                 className="rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group shadow-lg shadow-purple-500/25"
                 asChild
@@ -142,7 +141,7 @@ export default function Hero() {
               </Button>
             </div>
 
-            <div className="flex justify-center lg:justify-start space-x-5">
+            <div className="flex justify-center space-x-5">
               {[
                 { icon: Github, href: "https://github.com/Zay2006", color: "hover:text-gray-900 dark:hover:text-white" },
                 {
@@ -165,35 +164,7 @@ export default function Hero() {
                 </motion.a>
               ))}
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="hidden lg:flex justify-center"
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-3xl blur-2xl opacity-30 animate-pulse" />
-              <div className="relative w-72 h-80 xl:w-80 xl:h-96 rounded-3xl bg-gradient-to-br from-purple-600 via-pink-500 to-indigo-600 p-1 shadow-2xl">
-                <div className="w-full h-full rounded-[1.35rem] bg-white/10 dark:bg-gray-900/40 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center text-3xl font-display font-bold text-white mb-4 shadow-lg">
-                    IW
-                  </div>
-                  <p className="text-white/90 font-display text-xl font-semibold">Tech Outreach Coordinator</p>
-                  <p className="text-white/70 text-sm mt-2">& Voice Artist</p>
-                  <div className="flex gap-2 mt-6 flex-wrap justify-center">
-                    {["React", "Outreach", "VO", "Esports"].map((tag) => (
-                      <span key={tag} className="px-3 py-1 text-xs rounded-full bg-white/20 text-white backdrop-blur-sm">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 1, y: 0 }}
