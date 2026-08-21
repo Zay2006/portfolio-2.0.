@@ -1,6 +1,5 @@
 import { Mic, Cpu, Palette, Gamepad2, Users } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import SectionHeader from "@/components/section-header"
 
 const sections = [
   {
@@ -37,12 +36,6 @@ export default function About() {
   return (
     <section className="py-16 sm:py-20 px-4 relative">
       <div className="container mx-auto max-w-4xl">
-        <SectionHeader
-          label="About"
-          title="About Me"
-          description="Hello! I'm Isaiah Wright—An outreach professional, voice actor, and creative storyteller who is passionate about helping people discover opportunities in technology while expressing creativity through media and performance."
-        />
-
         <div className="mb-10 sm:mb-12">
           <Card className="glass-card border-none">
             <CardContent className="pt-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">

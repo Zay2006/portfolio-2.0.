@@ -4,8 +4,6 @@ import { ExternalLink, Github, Play, Calendar, Users, Star } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import SectionHeader from "@/components/section-header"
-
 export default function Projects() {
   const projects = [
     {
@@ -70,12 +68,6 @@ export default function Projects() {
     <section id="projects" className="py-16 sm:py-20 px-4 relative">
       <div className="absolute inset-0 bg-gray-50/80 dark:bg-gray-800/30 -z-10" />
       <div className="container mx-auto">
-        <SectionHeader
-          label="Featured Work"
-          title="Featured Projects"
-          description="A showcase of my recent work demonstrating skills in web development, database management, UI/UX design, and full-stack application development."
-        />
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
           {projects.map((project, index) => (
             <div key={index} className={index === 0 ? "lg:col-span-2" : ""}>

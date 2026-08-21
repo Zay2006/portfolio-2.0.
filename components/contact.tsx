@@ -1,22 +1,50 @@
 "use client"
 
-import { Mail, Phone, Send } from "lucide-react"
+import { useState } from "react"
+import { Mail, Phone, Send, Loader2, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import SectionHeader from "@/components/section-header"
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus("loading")
+    setErrorMessage("")
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message.")
+      }
+
+      setStatus("success")
+      setFormData({ name: "", email: "", subject: "", message: "" })
+    } catch (error) {
+      setStatus("error")
+      setErrorMessage(error instanceof Error ? error.message : "Failed to send message.")
+    }
+  }
+
   return (
     <section id="contact" className="py-16 sm:py-20 px-4">
       <div className="container mx-auto">
-        <SectionHeader
-          label="Contact"
-          title="Get In Touch"
-          description="Have a project in mind or want to collaborate? Feel free to reach out!"
-        />
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 max-w-5xl mx-auto">
           <Card className="h-full glass-card border-none">
             <CardHeader>
@@ -69,62 +97,104 @@ export default function Contact() {
             <CardHeader>
               <CardTitle className="text-xl sm:text-2xl font-display font-bold">Send Me a Message</CardTitle>
               <CardDescription className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-                I'll get back to you as soon as possible.
+                Messages go straight to my inbox — I'll get back to you as soon as possible.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form className="space-y-4 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {status === "success" ? (
+                <div className="flex flex-col items-center justify-center py-10 text-center space-y-4">
+                  <CheckCircle2 className="h-12 w-12 text-green-500" />
+                  <p className="text-lg font-medium text-gray-800 dark:text-gray-200">Message sent!</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Thanks for reaching out. I'll reply to your email soon.
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="rounded-xl"
+                    onClick={() => setStatus("idle")}
+                  >
+                    Send another message
+                  </Button>
+                </div>
+              ) : (
+                <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Name
+                      </label>
+                      <Input
+                        id="name"
+                        placeholder="Your name"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="border-gray-300/80 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Email
+                      </label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="Your email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="border-gray-300/80 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl"
+                      />
+                    </div>
+                  </div>
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Name
+                    <label htmlFor="subject" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Subject
                     </label>
                     <Input
-                      id="name"
-                      placeholder="Your name"
+                      id="subject"
+                      placeholder="Subject"
+                      required
+                      value={formData.subject}
+                      onChange={handleChange}
                       className="border-gray-300/80 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Email
+                    <label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Message
                     </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Your email"
-                      className="border-gray-300/80 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl"
+                    <Textarea
+                      id="message"
+                      placeholder="Your message"
+                      required
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="min-h-[120px] border-gray-300/80 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl"
                     />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    placeholder="Subject"
-                    className="border-gray-300/80 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    placeholder="Your message"
-                    className="min-h-[120px] border-gray-300/80 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-5 sm:py-6 rounded-xl shadow-lg shadow-purple-500/25"
-                >
-                  Send Message
-                  <Send className="ml-2 h-4 w-4" />
-                </Button>
-              </form>
+                  {status === "error" && (
+                    <p className="text-sm text-red-500">{errorMessage}</p>
+                  )}
+                  <Button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-5 sm:py-6 rounded-xl shadow-lg shadow-purple-500/25"
+                  >
+                    {status === "loading" ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              )}
             </CardContent>
           </Card>
         </div>
