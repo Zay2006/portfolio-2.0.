@@ -6,113 +6,70 @@ import { Calendar, MapPin, Award, TrendingUp, ChevronLeft, ChevronRight } from "
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+
 const experiences = [
   {
-    title: "Tech Outreach Coordinator VISTA",
-    company: "Launchpad Philly / AmeriCorps (PHENND Fellow)",
+    title: "Outreach Coordinator VISTA (PHENND Fellow)",
+    company: "Launchpad Philly / AmeriCorps",
     location: "Philadelphia, PA",
-    period: "Aug 2025 - Aug 2026",
+    period: "Aug 2025 – Aug 2026",
     type: "Outreach",
     description:
-      "Lead outreach and recruitment strategy for Launchpad Philly's 4th cohort, building partnerships and digital campaigns to expand access to tech education.",
+      "Led outreach and recruitment strategy for Launchpad Philly’s 4th cohort through school partnerships, community engagement, and digital campaigns.",
     achievements: [
-      "Lead outreach targeting 250+ student applications for Cohort 4",
-      "Build partnerships with schools, nonprofits, and community organizations",
-      "Design and manage TikTok and Instagram campaigns",
-      "Develop an Outreach Strategy Manual for sustainable recruitment",
+      "Led outreach and recruitment that reached 425 student applications for Cohort 4",
+      "Built and maintained partnerships with schools, nonprofits, and community organizations",
+      "Designed and managed TikTok and Instagram campaigns to increase engagement and visibility",
+      "Developed an Outreach Strategy Manual to standardize recruitment and partnership development",
     ],
     technologies: ["Community Outreach", "Social Media Strategy", "Partnership Development", "Recruitment"],
-  },
-  {
-    title: "Full-Stack Developer",
-    company: "Freelance Projects",
-    location: "Remote",
-    period: "2024 - Present",
-    type: "Freelance",
-    description:
-      "Built multiple web applications including a YouTube Viewer, Social Dashboard, and productivity timer using modern full-stack technologies.",
-    achievements: [
-      "Built 4+ complete web applications from scratch",
-      "Implemented responsive designs with 100% mobile compatibility",
-      "Integrated MySQL databases with optimized queries",
-    ],
-    technologies: ["React", "Next.js", "TypeScript", "MySQL", "Tailwind CSS"],
-  },
-  {
-    title: "Sales Associate",
-    company: "Apple Inc.",
-    location: "Willow Grove, PA",
-    period: "Oct 2024 - Jan 2025",
-    type: "Technical",
-    description:
-      "Provided customer-facing technical support and product education in a high-volume retail environment.",
-    achievements: [
-      "Delivered personalized customer solutions using technical product knowledge",
-      "Supported sales performance in a high-volume retail environment",
-      "Applied technical expertise to educate customers on Apple products",
-    ],
-    technologies: ["Customer Service", "Technical Support", "Product Education"],
   },
   {
     title: "Associate & Instructional Intern",
     company: "Launchpad Philly",
     location: "Philadelphia, PA",
-    period: "Jan 2024 - Jun 2025",
+    period: "Jan 2024 – Jun 2025",
     type: "Outreach",
     description:
-      "Developed full-stack applications while mentoring high school students in coding fundamentals and supporting youth development programming.",
+      "Developed full-stack applications while mentoring high school students and supporting instructional workshops and youth development programming.",
     achievements: [
-      "Developed full-stack apps using React.js, Next.js, and Python",
-      "Mentored 75+ high school students in coding fundamentals",
-      "Assisted with curriculum delivery and classroom facilitation",
-      "Collaborated in agile development and instructional environments",
+      "Developed full-stack applications using React.js, Next.js, and Python",
+      "Built projects including a YouTube Viewer, Social Dashboard, and productivity timer application",
+      "Mentored 80 high school students in coding fundamentals",
+      "Assisted with curriculum delivery, classroom facilitation, and student engagement strategies",
+      "Collaborated in agile development and instructional environments to deliver technical projects",
     ],
     technologies: ["React", "Next.js", "Python", "Youth Mentorship", "Curriculum Delivery"],
+  },
+  {
+    title: "Sales Associate",
+    company: "Apple Inc.",
+    location: "Willow Grove, PA",
+    period: "Oct 2024 – Jan 2025",
+    type: "Technical",
+    description:
+      "Provided customer-facing technical support and product education in a high-volume retail environment.",
+    achievements: [
+      "Provided customer-facing technical support and product education in a high-volume retail environment",
+      "Applied technical product knowledge to deliver personalized customer solutions",
+      "Supported sales performance through strong product expertise and customer engagement",
+    ],
+    technologies: ["Customer Service", "Technical Support", "Product Education"],
   },
   {
     title: "Program Assistant",
     company: "Office of Reentry Partnerships",
     location: "Philadelphia, PA",
-    period: "Jul 2024 - Aug 2024",
+    period: "Jul 2024 – Aug 2024",
     type: "Outreach",
     description:
       "Supported juvenile reentry initiatives through research, resource development, and community outreach coordination.",
     achievements: [
-      "Supported juvenile reentry initiatives through research and outreach",
+      "Supported juvenile reentry initiatives through research, resource development, and outreach coordination",
       "Assisted in identifying funding opportunities",
       "Improved workforce development resources for at-risk populations",
     ],
     technologies: ["Community Outreach", "Research", "Workforce Development"],
-  },
-  {
-    title: "Tech Support Specialist",
-    company: "Family & Community",
-    location: "Philadelphia, PA",
-    period: "2023 - 2025",
-    type: "Technical",
-    description:
-      "Served as the go-to person for tech issues across family and community, developing expertise in troubleshooting, system optimization, and user support.",
-    achievements: [
-      "Resolved 100+ technical issues across different platforms",
-      "Developed systematic troubleshooting methodologies",
-      "Gained expertise in Windows, macOS, and mobile platforms",
-    ],
-    technologies: ["Windows", "macOS", "iOS", "Android", "Hardware Troubleshooting"],
-  },
-  {
-    title: "Voice Actor",
-    company: "Independent Contractor",
-    location: "Philadelphia, PA",
-    period: "2020 - Present",
-    type: "Creative",
-    description:
-      "Providing professional voice-over services including character voices, narration, and commercial work. Open for bookings in character work, narration, and esports announcing.",
-    achievements: [
-      "Completed 20+ voice acting projects",
-      "Developed unique character voices for animated content",
-      "Built a professional home studio setup",
-    ],
-    technologies: ["Audio Editing", "Character Development", "Script Analysis", "Studio Recording"],
   },
 ]
 
@@ -120,11 +77,11 @@ const achievements = [
   {
     icon: Award,
     title: "PHENND Fellow",
-    description: "Selected as AmeriCorps PHENND Fellow serving as Tech Outreach Coordinator at Launchpad Philly",
+    description: "AmeriCorps PHENND Fellow serving as Outreach Coordinator at Launchpad Philly",
   },
   {
     icon: TrendingUp,
-    title: "75+ Students Mentored",
+    title: "80+ Students Mentored",
     description: "Guided high school students through coding fundamentals and professional development",
   },
   {

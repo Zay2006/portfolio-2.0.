@@ -1,13 +1,41 @@
-import { Mic, Cpu, Palette, Gamepad2, Users } from "lucide-react"
+import { Mic, Cpu, Palette, Gamepad2, Users, HeartHandshake } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+const linkClass =
+  "text-purple-600 dark:text-purple-400 font-medium underline underline-offset-2 hover:text-purple-700 dark:hover:text-purple-300"
 
 const sections = [
   {
     title: "Technology & Outreach",
     icon: Cpu,
     color: "from-blue-500 to-cyan-500",
-    content:
-      "As a Tech Outreach Coordinator with Launchpad Philly, I work to expand access to technology education and career pathways for young people. My role focuses on building partnerships with schools and community organizations, engaging students and families through outreach events, and helping connect the next generation with opportunities in tech. I'm passionate about making the tech industry more accessible and empowering students to see themselves in these spaces.",
+    content: (
+      <>
+        I learned how to become a software engineer at{" "}
+        <a href="https://launchpadphilly.org/" target="_blank" rel="noopener noreferrer" className={linkClass}>
+          Launchpad Philly
+        </a>
+        , where I grew from building full-stack projects to leading outreach that connects young people with
+        technology education and career pathways. I focus on partnerships, recruitment, and digital campaigns that
+        make tech feel accessible and achievable.
+      </>
+    ),
+  },
+  {
+    title: "Tech, Education & Arts at BuildaBridge",
+    icon: HeartHandshake,
+    color: "from-teal-500 to-emerald-500",
+    content: (
+      <>
+        As a Tech, Ed, Arts Fellow with{" "}
+        <a href="https://www.buildabridge.org" target="_blank" rel="noopener noreferrer" className={linkClass}>
+          BuildaBridge International
+        </a>
+        , I blend software engineering with education and the arts—using technology in service of healing and
+        creativity. It is a space where I can put my development skills to good use while expressing myself in ways
+        that feel meaningful and fulfilling.
+      </>
+    ),
   },
   {
     title: "Voice Acting & Creative Expression",
@@ -81,8 +109,8 @@ export default function About() {
                 <Users className="h-5 w-5" />
               </div>
               <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                I'm always open to connecting with people who share interests in technology, education, voice acting,
-                esports, and creative media.
+                I&apos;m always open to connecting with people who share interests in technology, education, the arts,
+                voice acting, esports, and creative media.
               </p>
             </CardContent>
           </Card>

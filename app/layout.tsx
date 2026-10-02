@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Isaiah Wright - Portfolio",
   description:
-    "Outreach Coordinator | Voice Actor | Content Creator | Workforce Development Advocate | Philadelphia",
+    "Full-Stack Developer | Outreach Coordinator | STEM Educator | Tech, Ed, Arts Fellow | Philadelphia",
 }
 
 export default function RootLayout({

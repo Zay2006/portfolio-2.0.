@@ -6,8 +6,23 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
+type Project = {
+  title: string
+  description: string
+  demo: string
+  github?: string
+  githubPrivate?: boolean
+  image: string
+  tags: string[]
+  color: string
+  status: string
+  duration: string
+  team: string
+  highlights: string[]
+}
+
 export default function Projects() {
-  const projects = [
+  const projects: Project[] = [
     {
       title: "YouTube Viewer 2.0",
       description:
@@ -21,7 +36,6 @@ export default function Projects() {
       duration: "3 months",
       team: "Solo Project",
       highlights: ["Custom API Integration", "Responsive Design", "Advanced Search"],
-      initials: "YT",
     },
     {
       title: "Timed Timer 3.0",
@@ -36,37 +50,34 @@ export default function Projects() {
       duration: "2 months",
       team: "Solo Project",
       highlights: ["Pomodoro Technique", "Session Analytics", "Custom Notifications"],
-      initials: "TT",
     },
     {
-      title: "Social Dashboard 2.0",
+      title: "Blufcial 2.0",
       description:
-        "A comprehensive social media analytics dashboard that aggregates data from multiple platforms with beautiful data visualizations.",
-      github: "https://github.com/Zay2006/social-dashboard-2.0",
-      demo: "https://social-dashboard-delta.vercel.app",
+        "Licensed for Phi Beta Sigma Fraternity, Inc. and the National Sigma Beta Club Foundation. (Just a Prototype.) A web experience supporting fraternity and youth foundation branding and engagement.",
+      github: "https://github.com/Zay2006/Blufcial-2.0",
+      demo: "https://blufcial-2-0.vercel.app/",
       image: "/social-media-dashboard-analytics.jpg",
-      tags: ["MySQL", "Analytics", "Dashboard", "Data Visualization"],
-      color: "from-purple-500 to-indigo-500",
-      status: "Completed",
-      duration: "4 months",
+      tags: ["Next.js", "Branding", "Prototype", "Web App"],
+      color: "from-blue-700 to-indigo-600",
+      status: "Prototype",
+      duration: "In progress",
       team: "Solo Project",
-      highlights: ["Multi-platform Integration", "Real-time Analytics", "Custom Reports"],
-      initials: "SD",
+      highlights: ["Phi Beta Sigma Licensed", "Sigma Beta Club Foundation", "Prototype Build"],
     },
     {
-      title: "Young Saved Unashamed (YSU)",
+      title: "BuildaBridge International",
       description:
-        "A faith-based community platform designed to connect young believers and provide spiritual resources with event management and discussions.",
-      github: "https://github.com/Zay2006/young-saved-unashamed",
-      demo: "https://young-saved-unashamed.vercel.app",
-      image: "/faith-community-platform.jpg",
-      tags: ["Next.js", "Community", "Faith-Based", "Full-Stack"],
-      color: "from-green-500 to-emerald-500",
-      status: "Completed",
-      duration: "5 months",
-      team: "Solo Project",
-      highlights: ["Community Features", "Event Management", "Resource Sharing"],
-      initials: "YS",
+        "A nonprofit using the arts to support people affected by trauma. I contribute tech skills as a Tech, Ed, Arts Fellow—repository is private; learn more on the organization site.",
+      demo: "https://www.buildabridge.org/",
+      githubPrivate: true,
+      image: "/education-platform-interface.png",
+      tags: ["Nonprofit", "Arts", "Trauma-Informed Care", "Tech Fellowship"],
+      color: "from-teal-500 to-emerald-500",
+      status: "Fellowship",
+      duration: "Ongoing",
+      team: "BuildaBridge International",
+      highlights: ["Arts & Healing", "Tech + Education", "Community Impact"],
     },
   ]
 
@@ -76,7 +87,7 @@ export default function Projects() {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
           {projects.map((project, index) => (
-            <div key={index} className={index === 0 ? "lg:col-span-2" : ""}>
+            <div key={project.title} className={index === 0 ? "lg:col-span-2" : ""}>
               <Card className="h-full glass-card border-none overflow-hidden group">
                 <div className={`h-1.5 bg-gradient-to-r ${project.color}`} />
 
@@ -128,8 +139,8 @@ export default function Projects() {
                   <div>
                     <h4 className="font-semibold mb-2 text-sm text-gray-800 dark:text-gray-200">Key Highlights</h4>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {project.highlights.map((highlight, highlightIndex) => (
-                        <Badge key={highlightIndex} variant="outline" className="text-xs">
+                      {project.highlights.map((highlight) => (
+                        <Badge key={highlight} variant="outline" className="text-xs">
                           {highlight}
                         </Badge>
                       ))}
@@ -139,9 +150,9 @@ export default function Projects() {
                   <div>
                     <h4 className="font-semibold mb-2 text-sm text-gray-800 dark:text-gray-200">Technologies</h4>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {project.tags.map((tag, tagIndex) => (
+                      {project.tags.map((tag) => (
                         <span
-                          key={tagIndex}
+                          key={tag}
                           className="px-2.5 sm:px-3 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-full text-xs sm:text-sm"
                         >
                           {tag}
@@ -159,20 +170,27 @@ export default function Projects() {
                   >
                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
                       <Play className="h-4 w-4 mr-2" />
-                      Live Demo
+                      {project.githubPrivate ? "Visit Site" : "Live Demo"}
                     </a>
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="w-full sm:flex-1 bg-white/50 dark:bg-gray-900/50"
-                    asChild
-                  >
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                  {project.github ? (
+                    <Button
+                      variant="outline"
+                      className="w-full sm:flex-1 bg-white/50 dark:bg-gray-900/50"
+                      asChild
+                    >
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                        <ExternalLink className="h-3 w-3 ml-1" />
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button variant="outline" className="w-full sm:flex-1 bg-white/50 dark:bg-gray-900/50" disabled>
                       <Github className="h-4 w-4 mr-2" />
-                      Code
-                      <ExternalLink className="h-3 w-3 ml-1" />
-                    </a>
-                  </Button>
+                      Private repository
+                    </Button>
+                  )}
                 </CardFooter>
               </Card>
             </div>

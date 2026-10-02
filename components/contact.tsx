@@ -17,6 +17,47 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }))
   }
 
+  const submitViaFormSubmit = async () => {
+    const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(siteConfig.email)}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        _replyto: formData.email,
+        _subject: `Portfolio message: ${formData.subject}`,
+        _template: "table",
+        _captcha: "false",
+      }),
+    })
+
+    const raw = await response.text()
+    let data: { success?: boolean | string; message?: string } = {}
+    try {
+      data = raw ? JSON.parse(raw) : {}
+    } catch {
+      if (raw.includes("Just a moment")) {
+        throw new Error("The mail service is temporarily unavailable. Please use the email link below.")
+      }
+      throw new Error("Unexpected response from mail service.")
+    }
+
+    const ok =
+      response.ok &&
+      (data.success === true ||
+        (typeof data.success === "string" && data.success.length > 0) ||
+        (typeof data.message === "string" && /thank you|success/i.test(data.message)))
+
+    if (!ok) {
+      throw new Error(typeof data.message === "string" ? data.message : "Failed to send message.")
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("loading")
@@ -31,15 +72,37 @@ export default function Contact() {
 
       const data = await response.json()
 
+      if (response.ok && data.success) {
+        setStatus("success")
+        setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
+        return
+      }
+
+      if (response.status === 503 && data.error === "SERVER_BLOCKED") {
+        await submitViaFormSubmit()
+        setStatus("success")
+        setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
+        return
+      }
+
       if (!response.ok) {
         throw new Error(data.error || "Failed to send message.")
       }
 
+      await submitViaFormSubmit()
       setStatus("success")
       setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
     } catch (error) {
-      setStatus("error")
-      setErrorMessage(error instanceof Error ? error.message : "Failed to send message.")
+      try {
+        await submitViaFormSubmit()
+        setStatus("success")
+        setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
+      } catch (fallbackError) {
+        setStatus("error")
+        setErrorMessage(
+          fallbackError instanceof Error ? fallbackError.message : "Failed to send message.",
+        )
+      }
     }
   }
 
@@ -186,7 +249,16 @@ export default function Contact() {
                     />
                   </div>
                   {status === "error" && (
-                    <p className="text-sm text-red-500">{errorMessage}</p>
+                    <div className="text-sm text-red-500 space-y-2">
+                      <p>{errorMessage}</p>
+                      <p>
+                        You can also email me directly at{" "}
+                        <a href={`mailto:${siteConfig.email}`} className="underline font-medium">
+                          {siteConfig.email}
+                        </a>
+                        .
+                      </p>
+                    </div>
                   )}
                   <Button
                     type="submit"

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { useReducedMotion } from "@/lib/use-reduced-motion"
 import { siteConfig } from "@/lib/site-config"
 
-const ROLES = ["Outreach Coordinator", "Voice Actor", "Content Creator", "Full-Stack Developer"]
+const ROLES = ["Tech, Ed, Arts Fellow", "Outreach Coordinator", "Full-Stack Developer", "STEM Educator"]
 
 export default function Hero() {
   const [displayText, setDisplayText] = useState(ROLES[0])
@@ -50,9 +50,9 @@ export default function Hero() {
   }, [displayText, currentIndex, isDeleting, prefersReducedMotion])
 
   const stats = [
-    { number: "75+", label: "Students Mentored" },
-    { number: "5+", label: "Years Experience" },
-    { number: "4+", label: "Projects Built" },
+    { number: "80+", label: "Students Mentored" },
+    { number: "6+", label: "Years Experience" },
+    { number: "10+", label: "Projects Built" },
   ]
 
   return (
@@ -115,12 +115,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-xl mx-auto mb-8">
-              An outreach professional, voice actor, and creative storyteller passionate about technology, education,
-              and community.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-8 mt-2">
               <Button
                 className="rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group shadow-lg shadow-purple-500/25"
                 asChild
