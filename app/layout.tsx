@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Space_Grotesk } from "next/font/google"
 import "./globals.css"
+import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "@/components/theme-provider"
 import SiteLayout from "@/components/site-layout"
 
@@ -19,7 +20,6 @@ export const metadata: Metadata = {
   title: "Isaiah Wright - Portfolio",
   description:
     "Outreach Coordinator | Voice Actor | Content Creator | Workforce Development Advocate | Philadelphia",
-  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -32,6 +32,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <SiteLayout>{children}</SiteLayout>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

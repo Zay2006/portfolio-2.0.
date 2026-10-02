@@ -1,16 +1,19 @@
 import { NextResponse } from "next/server"
-
-const CONTACT_EMAIL = "iwright4706@gmail.com"
+import { siteConfig } from "@/lib/site-config"
 
 export async function POST(request: Request) {
   try {
-    const { name, email, subject, message } = await request.json()
+    const { name, email, subject, message, honeypot } = await request.json()
+
+    if (honeypot?.trim()) {
+      return NextResponse.json({ success: true })
+    }
 
     if (!name?.trim() || !email?.trim() || !subject?.trim() || !message?.trim()) {
       return NextResponse.json({ error: "All fields are required." }, { status: 400 })
     }
 
-    const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+    const response = await fetch(`https://formsubmit.co/ajax/${siteConfig.email}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

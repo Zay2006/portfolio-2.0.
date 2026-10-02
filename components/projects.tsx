@@ -1,9 +1,11 @@
 "use client"
 
+import Image from "next/image"
 import { ExternalLink, Github, Play, Calendar, Users, Star } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+
 export default function Projects() {
   const projects = [
     {
@@ -12,6 +14,7 @@ export default function Projects() {
         "A modern, feature-rich YouTube viewer application built from the ground up. Features include advanced search capabilities, playlist management, and a clean, intuitive interface.",
       github: "https://github.com/Zay2006/YoutubeViewer2.0",
       demo: "https://youtube-viewer2-0.vercel.app",
+      image: "/youtube-viewer-interface.jpg",
       tags: ["React", "API Integration", "UI/UX", "Responsive Design"],
       color: "from-red-500 to-orange-500",
       status: "Completed",
@@ -26,6 +29,7 @@ export default function Projects() {
         "A sophisticated productivity timer application designed to enhance focus and work efficiency. Features customizable intervals, progress tracking, and analytics.",
       github: "https://github.com/Zay2006/TimedTimer3.0",
       demo: "https://timed-timer3-0.vercel.app",
+      image: "/productivity-timer-app.jpg",
       tags: ["JavaScript", "Productivity", "Time Management", "Analytics"],
       color: "from-blue-500 to-cyan-500",
       status: "Completed",
@@ -40,6 +44,7 @@ export default function Projects() {
         "A comprehensive social media analytics dashboard that aggregates data from multiple platforms with beautiful data visualizations.",
       github: "https://github.com/Zay2006/social-dashboard-2.0",
       demo: "https://social-dashboard-delta.vercel.app",
+      image: "/social-media-dashboard-analytics.jpg",
       tags: ["MySQL", "Analytics", "Dashboard", "Data Visualization"],
       color: "from-purple-500 to-indigo-500",
       status: "Completed",
@@ -54,6 +59,7 @@ export default function Projects() {
         "A faith-based community platform designed to connect young believers and provide spiritual resources with event management and discussions.",
       github: "https://github.com/Zay2006/young-saved-unashamed",
       demo: "https://young-saved-unashamed.vercel.app",
+      image: "/faith-community-platform.jpg",
       tags: ["Next.js", "Community", "Faith-Based", "Full-Stack"],
       color: "from-green-500 to-emerald-500",
       status: "Completed",
@@ -75,11 +81,14 @@ export default function Projects() {
                 <div className={`h-1.5 bg-gradient-to-r ${project.color}`} />
 
                 <div className="relative overflow-hidden aspect-video">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                    <span className="text-5xl sm:text-6xl font-display font-bold text-white/30 group-hover:scale-110 transition-transform duration-500">
-                      {project.initials}
-                    </span>
-                  </div>
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-6">
                     <span className="text-white font-semibold text-sm sm:text-base flex items-center gap-2">
                       View Project <ExternalLink className="h-4 w-4" />

@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { ArrowDown, Github, Linkedin, Play, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useReducedMotion } from "@/lib/use-reduced-motion"
+import { siteConfig } from "@/lib/site-config"
 
 const ROLES = ["Outreach Coordinator", "Voice Actor", "Content Creator", "Full-Stack Developer"]
 
@@ -143,13 +144,13 @@ export default function Hero() {
 
             <div className="flex justify-center space-x-5">
               {[
-                { icon: Github, href: "https://github.com/Zay2006", color: "hover:text-gray-900 dark:hover:text-white" },
+                { icon: Github, href: siteConfig.social.github, color: "hover:text-gray-900 dark:hover:text-white" },
                 {
                   icon: Linkedin,
-                  href: "https://www.linkedin.com/in/isaiah-wright-384b2b26a/",
+                  href: siteConfig.social.linkedin,
                   color: "hover:text-blue-600",
                 },
-                { icon: Mail, href: "mailto:iwright4706@gmail.com", color: "hover:text-red-500" },
+                { icon: Mail, href: `mailto:${siteConfig.email}`, color: "hover:text-red-500" },
               ].map((social, index) => (
                 <motion.a
                   key={index}

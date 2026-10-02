@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { siteConfig } from "@/lib/site-config"
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "", honeypot: "" })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -35,7 +36,7 @@ export default function Contact() {
       }
 
       setStatus("success")
-      setFormData({ name: "", email: "", subject: "", message: "" })
+      setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
     } catch (error) {
       setStatus("error")
       setErrorMessage(error instanceof Error ? error.message : "Failed to send message.")
@@ -61,10 +62,10 @@ export default function Contact() {
                 <div>
                   <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Email</h3>
                   <a
-                    href="mailto:iwright4706@gmail.com"
+                    href={`mailto:${siteConfig.email}`}
                     className="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors break-all"
                   >
-                    iwright4706@gmail.com
+                    {siteConfig.email}
                   </a>
                 </div>
               </div>
@@ -76,10 +77,10 @@ export default function Contact() {
                 <div>
                   <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Phone</h3>
                   <a
-                    href="tel:215-251-7167"
+                    href={`tel:${siteConfig.phoneTel}`}
                     className="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                   >
-                    (215) 251-7167
+                    {siteConfig.phone}
                   </a>
                 </div>
               </div>
@@ -117,7 +118,18 @@ export default function Contact() {
                   </Button>
                 </div>
               ) : (
-                <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+                <form className="relative space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    id="honeypot"
+                    name="honeypot"
+                    value={formData.honeypot}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden
+                    className="absolute left-[-9999px] h-0 w-0 opacity-0 pointer-events-none"
+                  />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
