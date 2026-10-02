@@ -5,6 +5,7 @@ export const siteConfig = {
   phone: "(215) 251-7167",
   phoneTel: "215-251-7167",
   resumePath: "/Isaiah_Wright_Resume.pdf",
+  businessCard: "https://blinq.me/vm4pyoXvMRyQ?bs=iec",
   social: {
     github: "https://github.com/Zay2006",
     linkedin: "https://www.linkedin.com/in/isaiah-wright-384b2b26a/",

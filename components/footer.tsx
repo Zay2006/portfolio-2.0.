@@ -1,10 +1,11 @@
-import { Github, Linkedin, Mail, Heart, FileText } from "lucide-react"
+import { Github, Linkedin, Mail, Star, FileText, IdCard } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
 
 const socialLinks = [
   { icon: Github, href: siteConfig.social.github, label: "GitHub profile" },
   { icon: Linkedin, href: siteConfig.social.linkedin, label: "LinkedIn profile" },
   { icon: Mail, href: `mailto:${siteConfig.email}`, label: "Email Isaiah Wright" },
+  { icon: IdCard, href: siteConfig.businessCard, label: "Digital business card" },
   { icon: FileText, href: siteConfig.resumePath, label: "Download resume" },
 ] as const
 
@@ -41,7 +42,7 @@ export default function Footer() {
           <span>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</span>
           <span className="hidden sm:inline mx-2">·</span>
           <span className="flex items-center gap-1">
-            Built with <Heart className="h-3 w-3 text-pink-500 fill-pink-500" /> and Next.js
+            Built with <Star className="h-3 w-3 text-amber-400 fill-amber-400" /> and Next.js
           </span>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Phone, Send, Loader2, CheckCircle2 } from "lucide-react"
+import { Mail, Phone, Send, Loader2, CheckCircle2, IdCard, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -33,6 +33,7 @@ export default function Contact() {
         _subject: `Portfolio message: ${formData.subject}`,
         _template: "table",
         _captcha: "false",
+        _autoresponse: `Thanks for contacting Isaiah Wright. I'll reply to ${formData.email} soon.`,
       }),
     })
 
@@ -64,39 +65,26 @@ export default function Contact() {
     setErrorMessage("")
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      })
-
-      const data = await response.json()
-
-      if (response.ok && data.success) {
-        setStatus("success")
-        setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
-        return
-      }
-
-      if (response.status === 503 && data.error === "SERVER_BLOCKED") {
-        await submitViaFormSubmit()
-        setStatus("success")
-        setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
-        return
-      }
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to send message.")
-      }
-
       await submitViaFormSubmit()
       setStatus("success")
       setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
-    } catch (error) {
+    } catch {
       try {
-        await submitViaFormSubmit()
-        setStatus("success")
-        setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        })
+
+        const data = await response.json()
+
+        if (response.ok && data.success) {
+          setStatus("success")
+          setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" })
+          return
+        }
+
+        throw new Error(data.error || "Failed to send message.")
       } catch (fallbackError) {
         setStatus("error")
         setErrorMessage(
@@ -148,10 +136,31 @@ export default function Contact() {
                 </div>
               </div>
 
+              <div className="flex items-center gap-4">
+                <div className="bg-gradient-to-br from-amber-500 to-orange-500 p-3 rounded-2xl shadow-md shadow-amber-500/20">
+                  <IdCard className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Business Card</h3>
+                  <a
+                    href={siteConfig.businessCard}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-amber-600 dark:hover:text-amber-400 transition-colors inline-flex items-center gap-1"
+                  >
+                    View my Blinq card
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+
               <div className="mt-4 p-5 sm:p-6 bg-gradient-to-r from-purple-600/10 to-indigo-600/10 rounded-2xl border border-purple-200/30 dark:border-purple-800/30">
-                <p className="text-gray-700 dark:text-gray-300 italic text-sm sm:text-base leading-relaxed">
-                  "Bridging storytelling, innovation, and artistry, I'm constantly learning and growing in these
-                  fields."
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+                  Form messages are sent directly to{" "}
+                  <a href={`mailto:${siteConfig.email}`} className="font-medium text-purple-600 dark:text-purple-400 underline underline-offset-2">
+                    {siteConfig.email}
+                  </a>
+                  .
                 </p>
               </div>
             </CardContent>
@@ -161,7 +170,7 @@ export default function Contact() {
             <CardHeader>
               <CardTitle className="text-xl sm:text-2xl font-display font-bold">Send Me a Message</CardTitle>
               <CardDescription className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-                Messages go straight to my inbox — I'll get back to you as soon as possible.
+                Messages go straight to {siteConfig.email}. I&apos;ll get back to you as soon as possible.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -260,6 +269,12 @@ export default function Contact() {
                       </p>
                     </div>
                   )}
+                  <Button type="button" variant="outline" className="w-full rounded-xl" asChild>
+                    <a href={`mailto:${siteConfig.email}?subject=Portfolio%20Contact`}>
+                      <Mail className="mr-2 h-4 w-4" />
+                      Email {siteConfig.email} directly
+                    </a>
+                  </Button>
                   <Button
                     type="submit"
                     disabled={status === "loading"}

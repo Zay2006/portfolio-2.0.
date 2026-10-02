@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { motion } from "framer-motion"
-import { Calendar, MapPin, Award, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react"
+import { Calendar, MapPin, Award, TrendingUp, Globe, ChevronLeft, ChevronRight } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -76,18 +76,19 @@ const experiences = [
 const achievements = [
   {
     icon: Award,
-    title: "PHENND Fellow",
-    description: "AmeriCorps PHENND Fellow serving as Outreach Coordinator at Launchpad Philly",
+    title: "Two Years with AmeriCorps",
+    description:
+      "Completing 2 whole years with AmeriCorps as a PHENND Fellow VISTA with Launchpad Philly and BuildaBridge International",
   },
   {
     icon: TrendingUp,
-    title: "80+ Students Mentored",
-    description: "Guided high school students through coding fundamentals and professional development",
+    title: "425 Cohort Applications",
+    description: "Received 425 applications for Launchpad Philly's Cohort 4 through outreach and digital campaigns",
   },
   {
-    icon: Calendar,
-    title: "Learn React Certified",
-    description: "Codecademy React Certification (2025) plus Launchpad full-stack workforce training",
+    icon: Globe,
+    title: "BuildaBridge Website Rebuild",
+    description: "Rebuilt BuildaBridge International's website and brought it new life for the community",
   },
 ]
 
