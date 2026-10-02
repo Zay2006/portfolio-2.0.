@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Phone, Send, Loader2, CheckCircle2, IdCard, ExternalLink } from "lucide-react"
+import { Mail, Phone, Send, Loader2, CheckCircle2, IdCard, ExternalLink, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -102,7 +102,7 @@ export default function Contact() {
             <CardHeader>
               <CardTitle className="text-xl sm:text-2xl font-display font-bold">Contact Information</CardTitle>
               <CardDescription className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-                Feel free to reach out through any of these channels.
+                {siteConfig.clientWork.tagline}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-5 sm:space-y-6">
@@ -132,6 +132,24 @@ export default function Contact() {
                     className="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                   >
                     {siteConfig.phone}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="bg-gradient-to-br from-emerald-500 to-teal-500 p-3 rounded-2xl shadow-md shadow-emerald-500/20">
+                  <Calendar className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Schedule</h3>
+                  <a
+                    href={siteConfig.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-flex items-center gap-1"
+                  >
+                    {siteConfig.clientWork.bookingLabel}
+                    <ExternalLink className="h-4 w-4" />
                   </a>
                 </div>
               </div>

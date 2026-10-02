@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowDown, Github, Linkedin, Play, Mail } from "lucide-react"
+import { ArrowDown, Github, Linkedin, Play, Mail, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useReducedMotion } from "@/lib/use-reduced-motion"
 import { siteConfig } from "@/lib/site-config"
@@ -115,6 +115,10 @@ export default function Hero() {
               </span>
             </div>
 
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto mb-6 leading-relaxed px-2">
+              {siteConfig.clientWork.tagline}
+            </p>
+
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-8 mt-2">
               <Button
                 className="rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group shadow-lg shadow-purple-500/25"
@@ -134,6 +138,16 @@ export default function Hero() {
                   <Mail className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
                   Get In Touch
                 </Link>
+              </Button>
+              <Button
+                variant="outline"
+                className="rounded-full border-2 border-indigo-500/80 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg group bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"
+                asChild
+              >
+                <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer">
+                  <Calendar className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                  {siteConfig.clientWork.bookingLabel}
+                </a>
               </Button>
             </div>
 

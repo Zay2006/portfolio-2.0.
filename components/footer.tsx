@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Star, FileText, IdCard } from "lucide-react"
+import { Github, Linkedin, Mail, Star, FileText, IdCard, Calendar } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
 
 const socialLinks = [
@@ -6,6 +6,7 @@ const socialLinks = [
   { icon: Linkedin, href: siteConfig.social.linkedin, label: "LinkedIn profile" },
   { icon: Mail, href: `mailto:${siteConfig.email}`, label: "Email Isaiah Wright" },
   { icon: IdCard, href: siteConfig.businessCard, label: "Digital business card" },
+  { icon: Calendar, href: siteConfig.bookingUrl, label: siteConfig.clientWork.bookingLabel },
   { icon: FileText, href: siteConfig.resumePath, label: "Download resume" },
 ] as const
 
