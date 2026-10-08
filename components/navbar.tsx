@@ -16,15 +16,38 @@ const navItems = [
   { name: "Contact", href: "/contact" },
 ]
 
-export default function Navbar() {
-  const { theme, setTheme } = useTheme()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+function ThemeToggleButton({ className }: { className?: string }) {
+  const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  const isDark = mounted && resolvedTheme === "dark"
+
+  const toggleTheme = () => {
+    if (!mounted) return
+    setTheme(resolvedTheme === "dark" ? "light" : "dark")
+  }
+
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleTheme}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      className={className}
+      suppressHydrationWarning
+    >
+      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+    </Button>
+  )
+}
+
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : ""
@@ -71,29 +94,11 @@ export default function Navbar() {
                   )}
                 </Link>
               ))}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                aria-label="Toggle theme"
-                className="ml-2 rounded-full"
-                suppressHydrationWarning
-              >
-                {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
+              <ThemeToggleButton className="ml-2 rounded-full" />
             </nav>
 
             <div className="flex lg:hidden items-center space-x-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                aria-label="Toggle theme"
-                className="rounded-full"
-                suppressHydrationWarning
-              >
-                {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
+              <ThemeToggleButton className="rounded-full" />
               <Button
                 variant="ghost"
                 size="icon"
